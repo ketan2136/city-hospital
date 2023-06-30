@@ -6,14 +6,115 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-// import React, { useState } from 'react';
-import { Form, Formik, useFormik } from 'formik';
-import { object, string, number, date, InferType } from 'yup';
-import * as yup from 'yup';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { DataGrid } from '@mui/x-data-grid';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 
 export default function Medicine() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false); //1
+  const [Data, setData] = React.useState([]);
+
+  //3
+  const handleadd = (data) => {
+
+    let localdata = JSON.parse(localStorage.getItem('medicine'));
+
+    let rno = Math.floor(Math.random() * 1000);
+
+    var NewData = { id: rno, ...data };
+
+    if (localdata === null) {
+      localStorage.setItem('medicine', JSON.stringify([NewData]));
+      setData([NewData]) //4
+    } else {
+      localdata.push(NewData);
+      localStorage.setItem('medicine', JSON.stringify(localdata));
+      setData(localdata)//5
+    }
+
+    handleClose();
+  }
+
+
+  //6
+  React.useEffect(() => {
+    let localData = JSON.parse(localStorage.getItem("medicine"));
+
+    if (localData !== null) {
+      setData(localData)
+    }
+  }, []);
+
+  const handledelet = (id) => {
+    let localdata = JSON.parse(localStorage.getItem('medicine'));
+
+    let fdata = localdata.filter((v, i) => v.id !== id);
+
+    localStorage.setItem('medicine', JSON.stringify(fdata));
+    setData(fdata)
+
+  }
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'name', headerName: 'Medicine', width: 130 },
+    { field: 'price', headerName: 'Price', width: 130 },
+    { field: 'date', headerName: 'Expiry Date', width: 130 },
+    { field: 'desc', headerName: 'Description', sortable: false, width: 400, },
+    {
+      field: 'action',
+      headerName: 'Action',
+      width: 200,
+      renderCell: (params) => (
+        <IconButton aria-label="delete" onClick={() => handledelet(params.row.id)}>
+          <DeleteIcon />
+        </IconButton>
+      )
+    },
+  ];
+
+
+  var d = new Date();
+  let nd = new Date(d.setDate(d.getDate() - 1));
+
+  let appointmentSchema = Yup.object({
+    name: Yup.string().required('Enter your name'),
+    price: Yup.number().required('Please enter price'),
+    date: Yup.date().min(nd, 'enter valid date').required('Please enter date'),
+    desc: Yup.string().required('Please enter Description').test('desc', 'Max 100 Words allow',
+      function (val) {
+        let arr = val.split(" ");
+
+        if (arr.length > 100) {
+          return false
+        } else {
+          return true
+        }
+      }),
+  });
+
+  const formik = useFormik({
+    validationSchema: appointmentSchema,
+    initialValues: {
+      name: '',
+      price: '',
+      date: '',
+      desc: '',
+      action: ''
+    },
+    onSubmit: (values, action) => {
+      handleadd(values);
+
+      action.resetForm();
+      // alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -23,112 +124,99 @@ export default function Medicine() {
     setOpen(false);
   };
 
-  let userSchema = object({
-    medicine: yup.string().required('please enter name'),
-    date: yup.string().required('plase enetr date'),
-    number: yup.string().required('please enter nymber '),
-    message: yup.string().required('please enter me'),
-  });
 
-
-  const formik = useFormik({
-    initialValues: {
-      medicine: '',
-      date: '',
-      number: '',
-      message: '',
-    },
-    validationSchema: userSchema,
-    onSubmit: values => {
-      // alert(JSON.stringify(values, null, 2));
-    },
-  });
-
-  const { handleChange, handleBlur, handleSubmit, values, errors, touched } = formik
-
-  console.log(errors);
-
+  //2 //7
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Medicine</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
-          <Formik values={formik}>
-            <Form onSubmit={handleSubmit}>
+    <>
+      <div>
+        <Button variant="outlined" onClick={handleClickOpen}>
+          Add Medicine
+        </Button>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Add Medicine</DialogTitle>
+          <form onSubmit={handleSubmit}>
+            <DialogContent>
+              <DialogContentText>
+                To subscribe to this website, please enter your email address here. We
+                will send updates occasionally.
+              </DialogContentText>
               <TextField
                 margin="dense"
-                id="medicine"
-                label="medicine name"
+                id="name"
+                name='name'
+                label="Medicine Name"
                 type="text"
-                name='medicine'
                 fullWidth
-                variant="filled"
+                variant="standard"
+                value={values.name}
                 onChange={handleChange}
-                value={values.medicine}
                 onBlur={handleBlur}
+                helperText={errors.name && touched.name ? errors.name : ''}
+                error={errors.name && touched.name ? errors.name : ''}
               />
-
-              <span className='errors'>{errors.medicine && touched.medicine ? errors.medicine : ''}</span>
-
               <TextField
-                autoFocus
+                margin="dense"
+                id="price"
+                name='price'
+                label="Price "
+                type="number"
+                fullWidth
+                variant="standard"
+                value={values.price}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                helperText={errors.cname && touched.cname ? errors.cname : ''}
+                error={errors.price && touched.price ? errors.price : ''}
+              />
+              <TextField
                 margin="dense"
                 id="date"
                 name='date'
-                // label="Email Address"
+                label="Expiry Date"
                 type="date"
                 fullWidth
-                variant="filled"
-                onChange={handleChange}
+                variant="standard"
                 value={values.date}
+                onChange={handleChange}
                 onBlur={handleBlur}
+                helperText={errors.date && touched.date ? errors.date : ''}
+                error={errors.date && touched.date ? errors.date : ''}
               />
-              <span className='errors'>{errors.date && touched.date ? errors.date : ''}</span>
-
               <TextField
-                autoFocus
-                margin="dense"
-                id="number"
-                name='number'
-                label="medicine price"
-                type="text"
                 fullWidth
-                variant="filled"
-              onChange={handleChange}
-              value={values.number}
-              onBlur={handleBlur}
+                id="desc"
+                name='desc'
+                label="Description"
+                multiline
+                rows={4}
+                variant="standard"
+                value={values.desc}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                helperText={errors.desc && touched.desc ? errors.desc : ''}
+                error={errors.desc && touched.desc ? errors.desc : ''}
               />
-              <span className='errors'>{errors.number && touched.number ? errors.number : ''}</span>
-
-              <TextField
-                name="message"
-                margin="dense"
-                id="message"
-                label=" Message"
-                type="text"
-                fullWidth
-                variant="filled"
-              onChange={handleChange}
-              value={values.message}
-              onBlur={handleBlur}
-              />
-              <span className='errors'>{errors.message && touched.message ? errors.message : ''}</span>
-            </Form>
-          </Formik>
-
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button type='submit'>Add</Button>
+            </DialogActions>
+          </form>
+        </Dialog>
+      </div>
+      <div style={{ height: 470, width: '100%' }}>
+        <DataGrid
+          rows={Data}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 7 },
+            },
+          }}
+          pageSizeOptions={[7, 14]}
+          checkboxSelection
+        />
+      </div>
+    </>
   );
 }
