@@ -65,6 +65,7 @@ function Doctor(props) {
                     // })
                 }
             </div>
+           
         </section>
     );
 }

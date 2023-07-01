@@ -14,6 +14,7 @@ import Notfound from "../userside/Containar/Notfound";
 import Auth from "../userside/Containar/Auth";
 import Auth1 from "../userside/Containar/Auth1";
 import Exam from "../userside/Containar/Exam";
+import Mediciandata from '../userside/Containar/Mediciandata';
 
 
 
@@ -42,6 +43,7 @@ function User(props) {
 
 
                 <Route path='/auth1' element={<Auth1 />}></Route>
+                <Route path='/mediciandisplay' element={<Mediciandata />}></Route>
                 {/* <Route path='/auth' element={<Auth />}></Route>  */}
 
 
