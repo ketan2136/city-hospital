@@ -14,7 +14,7 @@ import Notfound from "../userside/Containar/Notfound";
 import Auth from "../userside/Containar/Auth";
 import Auth1 from "../userside/Containar/Auth1";
 import Exam from "../userside/Containar/Exam";
-import Mediciandata from '../userside/Containar/Mediciandata';
+import Mediciandata from '../userside/Containar/Medician/Mediciandata';
 
 
 
