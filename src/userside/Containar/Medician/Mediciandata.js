@@ -4,7 +4,7 @@ import Listmedician from './Listmedician';
 
 function Mediciandata(props) {
     const [add, seatadd] = useState([]);
-    const [fillter, setfillter] = useState([]);
+    const [fillter, setfillter] = useState('');
 
     React.useEffect(() => {
         let localData = JSON.parse(localStorage.getItem("medicine"));
@@ -19,8 +19,12 @@ function Mediciandata(props) {
 
 
         let fdata = localData.filter((v) => 
-            v.name.
+             v.name.toLowerCase().includes(val.toLowerCase()),
+             
         );
+        console.log(fdata);
+
+        seatadd(fdata)
 
 
     }

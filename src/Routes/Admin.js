@@ -5,8 +5,9 @@ import Doctordrower from "../admin/components/container/Doctordrower";
 import Time from "../admin/components/container/Time";
 import Login from "../admin/components/container/Login";
 import Info from "../admin/components/container/Info";
-import Medicine from "../admin/components/container/Medicine";
+
 import { Route, Routes } from 'react-router-dom';
+import Medicine from '../admin/components/container/medicines/Medicine';
 
 
 function Admin(props) {
