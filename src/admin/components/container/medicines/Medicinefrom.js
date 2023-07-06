@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,13 +6,20 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useFormik } from 'formik';
+import { Form, Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
 import EditIcon from '@mui/icons-material/Edit';
 
 
-function Medicinefrom(props) {
+function Medicinefrom({ onhandlesubmit, onupdate }) {
     const [open, setOpen] = React.useState(false); //1
+
+    useEffect(() => {
+        if (onupdate) {
+            formik.setValues(onupdate)
+            handleClickOpen()
+        }
+    }, [onupdate])
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -52,16 +59,24 @@ function Medicinefrom(props) {
             action: ''
         },
         onSubmit: (values, action) => {
-            //   handlesubmitdata(values);
+            onhandlesubmit(values);
             handleClose();
-
+            // handleupdate()
             action.resetForm();
             // alert(JSON.stringify(values, null, 2));
         },
     });
 
 
-  
+    //     const handleupdate = (v) => {
+
+    //     Formik.setValues(v)
+    //     // setupdate(v)
+    //     handleClickOpen()
+
+    //   }
+
+
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
 
@@ -74,8 +89,9 @@ function Medicinefrom(props) {
                 </Button>
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Add Medicine</DialogTitle>
-                    <form onSubmit={handleSubmit}>
-                        <DialogContent>
+
+                    <DialogContent>
+                        <Form onSubmit={handleSubmit}>
                             <DialogContentText>
                                 To subscribe to this website, please enter your email address here. We
                                 will send updates occasionally.
@@ -136,12 +152,13 @@ function Medicinefrom(props) {
                                 helperText={errors.desc && touched.desc ? errors.desc : ''}
                                 error={errors.desc && touched.desc ? errors.desc : ''}
                             />
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleClose}>Cancel</Button>
-                            <Button type='submit'>Add</Button>
-                        </DialogActions>
-                    </form>
+
+                            <DialogActions>
+                                <Button onClick={handleClose}>Cancel</Button>
+                                <Button type='submit'>Add</Button>
+                            </DialogActions>
+                        </Form>
+                    </DialogContent>
                 </Dialog>
             </div>
         </>

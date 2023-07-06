@@ -4,7 +4,7 @@ import Listmedician from './Listmedician';
 
 function Mediciandata(props) {
     const [add, seatadd] = useState([]);
-    const [fillter, setfillter] = useState('');
+    // const [fillter, setfillter] = useState('');
 
     React.useEffect(() => {
         let localData = JSON.parse(localStorage.getItem("medicine"));
@@ -18,9 +18,12 @@ function Mediciandata(props) {
         let localData = JSON.parse(localStorage.getItem("medicine"));
 
 
-        let fdata = localData.filter((v) => 
-             v.name.toLowerCase().includes(val.toLowerCase()),
-             
+        let fdata = localData.filter((v) =>
+            v.name.toLowerCase().includes(val.toLowerCase()) ||
+            v.price.toString().includes(val) ||
+            v.date.toString().includes(val) ||
+            v.desc.toLowerCase().includes(val.toLowerCase()) 
+
         );
         console.log(fdata);
 
@@ -41,7 +44,9 @@ function Mediciandata(props) {
             </div>
             <div className="container">
                 <input type='search ' name='searce' onChange={(e) => handlechange(e.target.value)}></input>
-                <Listmedician mdata={add} />
+                <div className='row'>
+                    <Listmedician mdata={add} />
+                </div>
             </div>
         </section>
     );

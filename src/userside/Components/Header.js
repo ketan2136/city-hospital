@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Header(props) {
+
+    let localData = localStorage.getItem("loginstatus");
+
+    const handlelogout =() => {
+        localStorage.removeItem("loginstatus")
+    }
+
     return (
         <div className="main-header">
             <div id="topbar" className="d-flex align-items-center fixed-top">
@@ -33,15 +40,22 @@ function Header(props) {
                             <li><Link className="nav-link scrollto" to={"/Doctors"} >Doctors</Link></li>
                             <li><Link className="nav-link scrollto" to={"/about"}>About</Link></li>
                             <li><Link className="nav-link scrollto" to={"/Contact"}>Contact</Link></li>
-                            <li><Link className="nav-link scrollto" to={"/mediciandisplay"}>medical</Link></li>
+                            <li><Link className="nav-link scrollto" to={"/mediciandisplay"}>medicine</Link></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
                     <Link to={'/Appointment'} href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
                         Appointment</Link>
-                    <Link to={'/auth1'} href="#" className="appointment-btn scrollto">
-                        <span className="d-none d-md-inline">Login/ Signup</span>
-                    </Link>
+                        {
+                            localData?
+                            <Link to={'/'} href="#" className="appointment-btn scrollto" onClick={handlelogout}>
+                            <span className="d-none d-md-inline">logout</span>
+                        </Link> :
+                         <Link to={'/auth1'} href="#" className="appointment-btn scrollto">
+                         <span className="d-none d-md-inline">Login/ Signup</span>
+                     </Link>
+                        }
+                   
                 </div>
             </header>
         </div>

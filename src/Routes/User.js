@@ -15,6 +15,8 @@ import Auth from "../userside/Containar/Auth";
 import Auth1 from "../userside/Containar/Auth1";
 import Exam from "../userside/Containar/Exam";
 import Mediciandata from '../userside/Containar/Medician/Mediciandata';
+// import PrivateRouter from '../userside/Containar/Medician/PrivateRouter';
+import PrivateRoute from './PrivateRoute';
 
 
 
@@ -22,9 +24,14 @@ function User(props) {
     return (
         <>
             <Header />
+
+
+
             {/* <Exam /> */}
             <Routes>
                 <Route exact path='/' element={<Home />} />
+                {/* <PrivateRouter path='/about' element={<About />} /> */}
+
                 <Route path='/about' element={<About />} />
                 <Route path='/Appointment' element={<Appointment />} />
 
@@ -43,7 +50,14 @@ function User(props) {
 
 
                 <Route path='/auth1' element={<Auth1 />}></Route>
-                <Route path='/mediciandisplay' element={<Mediciandata />}></Route>
+
+
+                <Route element={<PrivateRoute />}>
+                    <Route path='/mediciandisplay' element={<Mediciandata />} />
+                </Route>
+                {/* <PrivateRouter path='/mediciandisplay' element={<Mediciandata />} /> */}
+
+
                 {/* <Route path='/auth' element={<Auth />}></Route>  */}
 
 

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik, useFormik } from 'formik';
 
 
 function Auth1(props) {
-
-
     const [authtype, setauthtype] = useState('login');
+    const navigate = useNavigate();
 
     let authobj = {};
     let authval = {};
@@ -44,12 +43,29 @@ function Auth1(props) {
 
     let authschema = yup.object(authobj);
 
+    const handlelogin = () => {
+        localStorage.setItem("loginstatus",'true');
+        navigate('/')
+    };
+    const handlesignup = () => {
+
+    }
+    const handleforgot = () => {
+
+    }
+
     const formik = useFormik({
         initialValues: authval,
         enableReinitialize: true,
         validationSchema: authschema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            if (authtype === 'login') {
+                handlelogin();
+            } else if (authtype === 'signup') {
+                handlesignup();
+            } else if (authtype === 'forgot') {
+                handleforgot();
+            }
         },
     });
 
