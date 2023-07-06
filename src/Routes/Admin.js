@@ -8,12 +8,16 @@ import Info from "../admin/components/container/Info";
 
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../admin/components/container/medicines/Medicine';
+import Desboard from '../admin/components/container/Desboard/Desboard';
 
 
 function Admin(props) {
     return (
         <Muidrower>
         <Routes>
+          <Route >
+          <Route path='/' element={<Desboard />}/>
+          </Route>
           <Route path='/Doctordrower' element={<Doctordrower />}></Route>
           <Route path='/Appoiments' element={<Appoiments />}></Route>
           <Route path='/Time' element={<Time />}></Route>
