@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik, useFormik } from 'formik';
+import Buttan from '../Components/UL/Button/Button';
+// import CustimButtan from '../Components/UL/CustomButtan'
 
 
-function Auth1(props) {
+function Auth1({btn}) {
     const [authtype, setauthtype] = useState('login');
     const navigate = useNavigate();
 
@@ -132,12 +134,12 @@ function Auth1(props) {
 
 
                 {
-                    authtype === 'login' ? <div id='login' className="text-center"><button type="submit">Login</button></div>
+                    authtype === 'login' ? <div id='login'  className="text-center"><Buttan type="primary" btndisabled={true}>Login</Buttan> </div>
                         :
                         authtype === 'signup' ?
-                            <div id='login' className="text-center"><button type="submit">Sign up</button></div>
+                            <div id='login' CustimButtan className="text-center"><Buttan type="secondary">Sigh up</Buttan></div>
                             :
-                            <div id='login' className="text-center"><button type="submit">submit</button></div>
+                            <div id='login' className="text-center"><Buttan type="outline">Submit</Buttan></div>
 
                 }
                 {/* {
