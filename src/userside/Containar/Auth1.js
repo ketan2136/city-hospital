@@ -3,10 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik, useFormik } from 'formik';
 import Buttan from '../Components/UL/Button/Button';
+import Input from '../Components/UL/Input/Input';
 // import CustimButtan from '../Components/UL/CustomButtan'
 
 
-function Auth1({btn}) {
+function Auth1({ btn }) {
     const [authtype, setauthtype] = useState('login');
     const navigate = useNavigate();
 
@@ -46,7 +47,7 @@ function Auth1({btn}) {
     let authschema = yup.object(authobj);
 
     const handlelogin = () => {
-        localStorage.setItem("loginstatus",'true');
+        localStorage.setItem("loginstatus", 'true');
         navigate('/')
     };
     const handlesignup = () => {
@@ -98,33 +99,39 @@ function Auth1({btn}) {
 
                         null :
                         <div className="col-md-7 form-group">
-                            <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
+                            <Input type="text" name="name" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
                                 value={values.name}
-                                onBlur={handleBlur} />
+                                onBlur={handleBlur}
+                                erroetext={errors.name && touched.name ? errors.name : ''}
+                            />
                             <div className="validate" />
-                            <span className='errors'>{errors.name && touched.name ? errors.name : ''}</span>
+                            {/* <span className='errors'>{errors.name && touched.name ? errors.name : ''}</span> */}
 
                         </div>
 
                 }
 
                 <div className="col-md-7 form-group mt-3 mt-md-0">
-                    <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" onChange={handleChange}
-                        value={values.name}
-                        onBlur={handleBlur} />
+                    <Input type="email" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" onChange={handleChange}
+                        value={values.email}
+                        onBlur={handleBlur}
+                        erroetext={errors.email && touched.email ? errors.email : ''}
+                    />
                     <div className="validate" />
-                    <span className='errors'>{errors.email && touched.email ? errors.email : ''}</span>
+
 
                 </div>
 
                 {
                     authtype === 'forgot' ? null :
                         <div className="col-md-7 form-group mt-3 mt-md-0">
-                            <input type="password" className="form-control" name="phone" id="phone" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
-                                value={values.name}
-                                onBlur={handleBlur} />
+                            <Input type="password" name="phone" id="phone" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
+                                value={values.phone}
+                                onBlur={handleBlur}
+                                erroetext={errors.phone && touched.phone ? errors.phone : ''}
+                            />
                             <div className="validate" />
-                            <span className='errors'>{errors.phone && touched.phone ? errors.phone : ''}</span>
+                            {/* <span className='errors'>{errors.phone && touched.phone ? errors.phone : ''}</span> */}
 
 
                         </div>
@@ -134,7 +141,7 @@ function Auth1({btn}) {
 
 
                 {
-                    authtype === 'login' ? <div id='login'  className="text-center"><Buttan type="primary" btndisabled={true}>Login</Buttan> </div>
+                    authtype === 'login' ? <div id='login' className="text-center"><Buttan type="primary" btndisabled={true}>Login</Buttan> </div>
                         :
                         authtype === 'signup' ?
                             <div id='login' CustimButtan className="text-center"><Buttan type="secondary">Sigh up</Buttan></div>
