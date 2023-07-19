@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseButton, OutlineButton, PrimaryButton, SecondaryButton } from './Button.style';
+import {  OutlineButton, PrimaryButton, SecondaryButton } from './Button.style';
 
 function Buttan({ children,type ,btndisabled=false }) {
 

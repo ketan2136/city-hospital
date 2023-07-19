@@ -24,7 +24,7 @@ import { Provider } from 'react-redux';
 
 
 function User(props) {
-    const store = configureStore();
+    // const store = configureStore();
     return (
         <>
          {/* <Provider store={store}> */}

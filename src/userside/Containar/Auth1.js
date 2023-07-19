@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik, useFormik } from 'formik';
 import Buttan from '../Components/UL/Button/Button';
-import Input from '../Components/UL/Input/Input';
+// import Input from '../Components/UL/Input/Input';
 import Heading from '../Components/UL/Heading/Heading';
 // import CustimButtan from '../Components/UL/CustomButtan'
 
@@ -103,7 +103,7 @@ function Auth1({ btn }) {
 
                         null :
                         <div className="col-md-7 form-group">
-                            <Input type="text" name="name" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
+                            <input type="text" name="name" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
                                 value={values.name}
                                 onBlur={handleBlur}
                                 erroetext={errors.name && touched.name ? errors.name : ''}
@@ -116,7 +116,7 @@ function Auth1({ btn }) {
                 }
 
                 <div className="col-md-7 form-group mt-3 mt-md-0">
-                    <Input type="email" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" onChange={handleChange}
+                    <input type="email" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" onChange={handleChange}
                         value={values.email}
                         onBlur={handleBlur}
                         erroetext={errors.email && touched.email ? errors.email : ''}
@@ -129,7 +129,7 @@ function Auth1({ btn }) {
                 {
                     authtype === 'forgot' ? null :
                         <div className="col-md-7 form-group mt-3 mt-md-0">
-                            <Input type="password" name="phone" id="phone" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
+                            <input type="password" name="phone" id="phone" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
                                 value={values.phone}
                                 onBlur={handleBlur}
                                 erroetext={errors.phone && touched.phone ? errors.phone : ''}
@@ -145,10 +145,10 @@ function Auth1({ btn }) {
 
 
                 {
-                    authtype === 'login' ? <div id='login' className="text-center"><Buttan type="primary" btndisabled={true}>Login</Buttan> </div>
+                    authtype === 'login' ? <div id='login' className="text-center"><Buttan type="primary" >Login</Buttan> </div>
                         :
                         authtype === 'signup' ?
-                            <div id='login' CustimButtan className="text-center"><Buttan type="secondary">Sigh up</Buttan></div>
+                            <div id='login' CustimButtan className="text-center"><Buttan type="secondary" btndisabled={true}>Sigh up</Buttan></div>
                             :
                             <div id='login' className="text-center"><Buttan type="outline">Submit</Buttan></div>
 

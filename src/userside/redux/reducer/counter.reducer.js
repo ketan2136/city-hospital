@@ -5,6 +5,7 @@ const inistate = {
 }
 
 export const counterReducher = (state = inistate, action) => {
+    console.log(action);
     switch (action.type) {
         case ActionType.INCREMENT_COUNTER:
             return {
