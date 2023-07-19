@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
+// import { styled } from "styled-components";
 
-export const Icon = styled.i`
-    color: #fff;
+// export const Icon = styled.i`
+//     color: #fff;
 
-    &hover{
-        color: #000;
-    }
-`; 
+//     &hover{
+//         color: #000;
+//     }
+// `; 

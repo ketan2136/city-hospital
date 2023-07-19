@@ -17,18 +17,24 @@ import Exam from "../userside/Containar/Exam";
 import Mediciandata from '../userside/Containar/Medician/Mediciandata';
 // import PrivateRouter from '../userside/Containar/Medician/PrivateRouter';
 import PrivateRoute from './PrivateRoute';
+import Counter from '../userside/Containar/counter/Counter';
+import { configureStore } from '../userside/redux/Store';
+import { Provider } from 'react-redux';
 
 
 
 function User(props) {
+    const store = configureStore();
     return (
         <>
+         {/* <Provider store={store}> */}
             <Header />
 
 
 
             {/* <Exam /> */}
             <Routes>
+                <Route path='/counter' element={ <Counter />} />
                 <Route exact path='/' element={<Home />} />
                 {/* <PrivateRouter path='/about' element={<About />} /> */}
 
@@ -63,6 +69,7 @@ function User(props) {
 
             </Routes>
             <Footer />
+            {/* </Provider> */}
         </>
     );
 }

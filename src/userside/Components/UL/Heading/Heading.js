@@ -23,13 +23,13 @@ function Heading({ children, type }) {
         }
     }
 
-    const headingcheck = HandleHeading()
+    const Headingcheck = HandleHeading()
 
     return (
         <>
-            <headingcheck >
+            <Headingcheck >
                 {children}
-            </headingcheck>
+            </Headingcheck>
         </>
     );
 }

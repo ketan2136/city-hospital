@@ -5,21 +5,18 @@ import PrivateRoute from "./Routes/PrivateRoute";
 import { Provider } from "react-redux";
 import Counter from "./userside/Containar/counter/Counter";
 import { configureStore } from "./userside/redux/Store";
+import Home from "./userside/Containar/Home";
 
 function App() {
-  const store = configureStore();
+  
   return (
-    <Provider store={store}>
-      {/* <Counter path='/counter'/> */}
+   
+    //  <h1>Hello</h1>
       <Routes>
-        <Route path='/*' element={<User />} />
-        <Route element={<PrivateRoute />}>
-          <Route path='/admin/*' element={<Admin />} />
-        </Route>
-
+        <Route exact path='/' element={<Home />} />
       </Routes>
       
-      </Provider>
+     
   );
 }
 
