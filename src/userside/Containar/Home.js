@@ -1,4 +1,6 @@
 import React from 'react';
+import Heading from '../Components/UL/Heading/Heading';
+import Icon from '../Components/UL/icon/Icon';
 
 function Home(props) {
     return (
@@ -7,7 +9,8 @@ function Home(props) {
         <div>
             <section id="hero" className="d-flex align-items-center">
                 <div className="container">
-                    <h1>Welcome to City <br />Multispeciality Hospital</h1>
+                    {/* <h1>Welcome to City <br />Multispeciality Hospital</h1> */}
+                    <Heading type='h1'><h1>Welcome to City <br />Multispeciality Hospital</h1></Heading>
                     <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
                 </div>
             </section>
@@ -19,28 +22,28 @@ function Home(props) {
                         <div className="row">
                             <div className="col-lg-3 col-md-6">
                                 <div className="count-box">
-                                    <i className="fas fa-user-md" />
+                                    <Icon className="fas fa-user-md" />
                                     <span>23</span>
                                     <p>Doctors</p>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
                                 <div className="count-box">
-                                    <i className="far fa-hospital" />
+                                    <Icon className="far fa-hospital" />
                                     <span>18</span>
                                     <p>Departments</p>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div className="count-box">
-                                    <i className="fas fa-heartbeat" />
+                                    <Icon className="fas fa-heartbeat" />
                                     <span>980</span>
                                     <p>Patients</p>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div className="count-box">
-                                    <i className="fas fa-award" />
+                                    <Icon className="fas fa-award" />
                                     <span>12</span>
                                     <p>Awards</p>
                                 </div>
@@ -51,7 +54,8 @@ function Home(props) {
                 <section id="services" className="services">
                     <div className="container">
                         <div className="section-title">
-                            <h2>Our Facilities</h2>
+                            {/* <h2>Our Facilities</h2> */}
+                           <Heading type='h2'> <h2>Our Facilities</h2></Heading>
                             <p>Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Fusce tincidunt sit
                                 amet ex in volutpat. Donec lacinia finibus tortor. Curabitur luctus eleifend odio. Phasellus placerat mi et
                                 suscipit pulvinar. Donec quis tristique lectus.</p>
@@ -196,7 +200,8 @@ function Home(props) {
                 <section id="gallery" className="gallery">
                     <div className="container">
                         <div className="section-title">
-                            <h2>Gallery</h2>
+                            {/* <h2>Gallery</h2> */}
+                            <Heading type='h2'> <h2>Gallery</h2></Heading>
                             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
                                 consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
                                 in iste officiis commodi quidem hic quas.</p>
@@ -274,3 +279,4 @@ function Home(props) {
 }
 
 export default Home;
+

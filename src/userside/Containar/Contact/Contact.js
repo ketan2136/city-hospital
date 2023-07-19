@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Formik, useFormik } from 'formik';
 import { object, string, number, date, InferType } from 'yup';
 import * as yup from 'yup';
+import Heading from '../../Components/UL/Heading/Heading';
+import { HeadingH2 } from '../../Components/UL/Heading/Heading.style';
 
 
 function Contact(props) {
@@ -46,6 +48,7 @@ function Contact(props) {
             <div className="container">
                 <div className="section-title">
                     <h2>Contact</h2>
+                    <Heading type='h2'>Contact</Heading>
                     <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
                         blandit quam volutpat sollicitudin. Aenean ac turpis ante. Mauris velit sapien, aliquet aliquet rhoncus quis,
                         luctus at neque. Mauris sit amet massa sed orci vehicula facilisis.</p>
@@ -128,7 +131,7 @@ function Contact(props) {
 
                                 />
 
-                                <span className='errors'>{errors.message && touched.message ? errors.message: ''}</span>
+                                <span className='errors'>{errors.message && touched.message ? errors.message : ''}</span>
 
 
                             </div>

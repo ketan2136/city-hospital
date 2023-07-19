@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Heading from '../../Components/UL/Heading/Heading';
 
 const doctorData = [
     {
@@ -38,6 +39,7 @@ function Doctors(props) {
             <div className="container">
                 <div className="section-title">
                     <h2>Doctors</h2>
+                    <Heading type='h2'>Doctors</Heading>
                     <p>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et,
                         tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
                         ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.</p>

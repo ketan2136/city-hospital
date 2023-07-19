@@ -1,10 +1,11 @@
 import React from 'react';
 import Muidrower from "../admin/components/Muidrower";
 import Appoiments from "../admin/components/container/Appoiments";
-import Doctordrower from "../admin/components/container/Doctordrower";
+import Doctordrower from "../admin/components/container/doctor/Doctordrower";
 import Time from "../admin/components/container/Time";
 import Login from "../admin/components/container/Login";
-import Info from "../admin/components/container/Info";
+// import Info from "../admin/components/container/Info";
+import Info from "../admin/components/container/Info"
 
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../admin/components/container/medicines/Medicine';

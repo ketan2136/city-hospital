@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { Formik, useFormik } from 'formik';
 import Buttan from '../Components/UL/Button/Button';
 import Input from '../Components/UL/Input/Input';
+import Heading from '../Components/UL/Heading/Heading';
 // import CustimButtan from '../Components/UL/CustomButtan'
 
 
@@ -80,8 +81,11 @@ function Auth1({ btn }) {
         <div className="container">
             <div className="section-title">
                 {
-                    authtype === 'login' ? <h2>Login</h2> :
+                        authtype === 'login' ? <h2>Login</h2> :
                         authtype === 'signup' ? <h2>sign up</h2> : <h2>reset password</h2>
+
+                        // authtype === 'login' ? <Heading type='h2'>Login</Heading> :
+                        // authtype === 'signup' ? <Heading type='h2'>sign up</Heading> : <Heading type='h2'>reset password</Heading>
 
 
                 }

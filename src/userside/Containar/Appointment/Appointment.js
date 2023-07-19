@@ -1,4 +1,5 @@
 import React from 'react';
+import Heading from '../../Components/UL/Heading/Heading';
 
 function Appointment(props) {
     return (
@@ -6,6 +7,7 @@ function Appointment(props) {
             <div className="container">
                 <div className="section-title">
                     <h2>Make an Appointment</h2>
+                    <Heading type='h2'>Make an Appointment</Heading>
                     <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
                         blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
                         Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Heading from '../../Components/UL/Heading/Heading';
 
 function Departments(props) {
     return (
@@ -6,6 +7,7 @@ function Departments(props) {
             <div className="container">
                 <div className="section-title">
                     <h2>Departments</h2>
+                    <Heading type='h2'>Departments</Heading>
                 </div>
                 <div className="row">
                     <div className="col-lg-3">
