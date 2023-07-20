@@ -1,22 +1,45 @@
-import * as  ActionType from "../ActionType"
+import * as ActionTypes from "../ActionType"
 
-const iniState = {
-    doctor: [],
-    loading : false,
+const initialState = {
+    doctors: [],
+    isloading: false,
     error: null
 }
 
-export const fackDoctor = (state = iniState, action ) => {
+export const doctorReducer = (state = initialState, action) => {
     console.log(action);
-
-    switch(action.type) {
-        case ActionType.GET_DOCTOR:
+    switch (action.type) {
+        case ActionTypes.GET_DOCTORS:
             return {
                 ...state,
-                doctor:action.payload
+                doctors: action.payload
             }
-            default:
-                return state;
-    }
 
+        case ActionTypes.ADD_DOCTORS:
+            return {
+                ...state,
+                doctors: state.doctors.concat(action.payload)
+            }
+
+        case ActionTypes.DELETE_DOCTORS:
+            return {
+                ...state,
+                doctors: state.doctors.filter((v) => v.id != action.payload)
+            }
+
+        case ActionTypes.UPDATE_DOCTORS:
+            return {
+                ...state,
+                doctors: state.doctors.map((v) => {
+                    if (v.id === action.payload.id) {
+                        return action.payload
+                    } else {
+                        return v;
+                    }
+                })
+            }
+
+        default:
+            return state
+    }
 }

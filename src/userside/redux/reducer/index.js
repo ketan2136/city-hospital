@@ -1,10 +1,9 @@
-// import { combineReducers } from "redux";
 import { combineReducers } from "redux";
-import { counterReducher } from "./counter.reducer";
-import { fackDoctor } from "./doctor.reducer";
+import { counterReducer } from "./counter.reducer";
+import { doctorReducer } from "./doctor.reducer";
 
 
 export const rootReducer = combineReducers({
-    counter: counterReducher,
-    data: fackDoctor
+    counter : counterReducer,
+    doctors: doctorReducer
 })

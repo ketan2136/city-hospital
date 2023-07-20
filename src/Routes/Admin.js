@@ -10,15 +10,19 @@ import Info from "../admin/components/container/Info"
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../admin/components/container/medicines/Medicine';
 import Desboard from '../admin/components/container/Desboard/Desboard';
+import { configureStore } from '../userside/redux/Store';
+import { Provider } from 'react-redux';
 
 
 function Admin(props) {
-    return (
-      
-        <Muidrower>
+  let store = configureStore()
+  return (
+
+    <Provider store={store}>
+      <Muidrower>
         <Routes>
           <Route >
-          <Route path='/' element={<Desboard />}/>
+            <Route path='/' element={<Desboard />} />
           </Route>
           <Route path='/Doctordrower' element={<Doctordrower />}></Route>
           <Route path='/Appoiments' element={<Appoiments />}></Route>
@@ -28,7 +32,8 @@ function Admin(props) {
           <Route path='/medicine' element={<Medicine />}></Route>
         </Routes>
       </Muidrower>
-    );
+    </Provider>
+  );
 }
 
 export default Admin;

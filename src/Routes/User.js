@@ -18,16 +18,16 @@ import Mediciandata from '../userside/Containar/Medician/Mediciandata';
 // import PrivateRouter from '../userside/Containar/Medician/PrivateRouter';
 import PrivateRoute from './PrivateRoute';
 import Counter from '../userside/Containar/counter/Counter';
-import { configureStore } from '../userside/redux/Store';
 import { Provider } from 'react-redux';
+import { configureStore } from '../userside/redux/Store';
 
 
 
 function User(props) {
-    // const store = configureStore();
+    const store = configureStore();
     return (
         <>
-         {/* <Provider store={store}> */}
+         <Provider store={store}>
             <Header />
 
 
@@ -69,7 +69,7 @@ function User(props) {
 
             </Routes>
             <Footer />
-            {/* </Provider> */}
+            </Provider>
         </>
     );
 }

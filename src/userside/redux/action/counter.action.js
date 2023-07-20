@@ -1,9 +1,10 @@
-import * as ActionType from '../ActionType'
+import * as ActionTypes from '../ActionType'
 
-export const increment= () => (dispatche) => {
-    dispatche({type: ActionType.INCREMENT_COUNTER})
+export const increment = () => (dispatch) => {
+    dispatch({type: ActionTypes.INCREMENT_COUNTER})
 }
 
-export const decrement = () => (dispatche) => {
-    dispatche({type: ActionType.DECREMENT_COUNTER})
+
+export const decrement = () => (dispatch) => {
+    dispatch({type: ActionTypes.DECREMENT_COUNTER})
 }

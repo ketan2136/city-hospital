@@ -10,7 +10,7 @@ import { configureStore } from "./userside/redux/Store";
 // import Home from "./userside/Containar/Home";
 
 function App() {
-  const store = configureStore();
+  const store = configureStore ();
 
   return (
 
