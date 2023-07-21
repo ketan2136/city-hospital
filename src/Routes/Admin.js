@@ -12,6 +12,7 @@ import Medicine from '../admin/components/container/medicines/Medicine';
 import Desboard from '../admin/components/container/Desboard/Desboard';
 import { configureStore } from '../userside/redux/Store';
 import { Provider } from 'react-redux';
+import Doctor from '../admin/components/container/doctor/Doctor';
 
 
 function Admin(props) {
@@ -24,7 +25,7 @@ function Admin(props) {
           <Route >
             <Route path='/' element={<Desboard />} />
           </Route>
-          <Route path='/Doctordrower' element={<Doctordrower />}></Route>
+          <Route path='/Doctordrower' element={<Doctor />}></Route>
           <Route path='/Appoiments' element={<Appoiments />}></Route>
           <Route path='/Time' element={<Time />}></Route>
           <Route path='/Login' element={<Login />}></Route>

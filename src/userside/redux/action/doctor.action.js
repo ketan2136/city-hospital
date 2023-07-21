@@ -1,11 +1,20 @@
-import * as ActionTypes from '../ActionTypes'
+import * as ActionTypes from '../ActionType'
 
 export const getDoctorData = () => (dispatch) => {
     try {
-        fetch("http://localhost:3004/Doctor")
-            .then((response) => response.json())
-            .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
-            .catch((error) => console.log(error))
+        dispatch(loading(true))
+        setTimeout(function () {
+            fetch("http://localhost:3004/doctor")
+                .then((response) => {
+                    if (response.ok) {
+                        response.json()
+                    }
+                    throw new Error('Somthing went wrong')
+                })
+                .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
+                .catch((error) => console.log(error))
+        }, 3000);
+
     } catch (error) {
         console.log(error);
     }
@@ -13,7 +22,7 @@ export const getDoctorData = () => (dispatch) => {
 
 export const addDoctorData = (data) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/Doctor", {
+        fetch("http://localhost:3004/doctor", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +39,7 @@ export const addDoctorData = (data) => (dispatch) => {
 
 export const deleteDoctorData = (id) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/Doctor/" + id, {
+        fetch("http://localhost:3004/doctor" + id, {
             method: "DELETE"
         })
             .then(dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id }))
@@ -54,4 +63,12 @@ export const updateDoctorData = (data) => (dispatch) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+export const loading = (status) => (dispatch) => {
+    dispatch({ type: ActionTypes.LOADING_DOCTORS, payload: status })
+}
+export const error = (error) => (dispatch) => {
+    
+    dispatch({ type: ActionTypes.LOADING_DOCTORS, payload: status })
 }

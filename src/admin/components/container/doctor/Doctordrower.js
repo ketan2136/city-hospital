@@ -1,5 +1,3 @@
-
-
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
@@ -63,7 +61,7 @@ function Doctordrower({ onhandlesubmit, onupdate }) {
         <>
             <h1>Doctor</h1>
             <Button variant="outlined" onClick={handleClickOpen}>
-                Open form Doctor
+                Doctor
             </Button>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Doctor</DialogTitle>

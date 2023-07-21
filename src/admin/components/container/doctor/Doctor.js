@@ -1,12 +1,13 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDoctorData, deleteDoctorData, getDoctorData, updateDoctorData } from '../../../redux/action/doctors.action'
+import { addDoctorData, deleteDoctorData, getDoctorData, updateDoctorData } from '../../../../userside/redux/action/doctor.action'
 import { DataGrid } from '@mui/x-data-grid';
-import DoctorForm from './DoctorForm';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import Doctordrower from './Doctordrower';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Doctor(props) {
     const [update, setupdate] = React.useState(null);
@@ -60,20 +61,97 @@ function Doctor(props) {
     }
 
     return (
+
         <div>
 
-            <DoctorForm onhandlesubmit={handlesubmit} onupdate={update} />
-
-            <div style={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    rows={doctorData.doctors}
-                    columns={columns}
-                    pageSizeOptions={[5, 10]}
-                    checkboxSelection
-                />
-            </div>
+        {
+            doctorData.loading ? <CircularProgress color="secondary" /> : 
+                 <>
+                 <div>
+        
+                    <Doctordrower onhandlesubmit={handlesubmit} onupdate={update} />
+        
+                    <div style={{ height: 400, width: '100%' }}>
+                        <DataGrid
+                            rows={doctorData.doctors}
+                            columns={columns}
+                            pageSizeOptions={[5, 10]}
+                            checkboxSelection
+                        />
+                    </div>
+                </div>
+                </>
+        }
         </div>
+// {   
+//     doctorData.loading ? <CircularProgress color="secondary" /> : 
+
+//     <>
+//     <div>
+
+//             <Doctordrower onhandlesubmit={handlesubmit} onupdate={update} />
+
+//             <div style={{ height: 400, width: '100%' }}>
+//                 <DataGrid
+//                     rows={doctorData.doctors}
+//                     columns={columns}
+//                     pageSizeOptions={[5, 10]}
+//                     checkboxSelection
+//                 />
+//             </div>
+//         </div>
+//         </>
+// }
+
+        
     );
 }
 
 export default Doctor;
+
+
+
+
+
+
+// function Doctor(props) {
+
+//     const dispatch = useDispatch()
+   
+//     const doctorData = useSelector(state => state.doctors)
+    
+//     console.log(doctorData)
+
+//     useEffect(() => {
+//         dispatch(getDoctorData())
+//     }, [])
+
+//     // "id": 102,
+//     // "name": "ABC",
+//     // "price": 500
+
+// const columns = [
+//     { field: 'id', headerName: 'Id', width: 130 },
+//     { field: 'name', headerName: 'Name', width: 130 },
+//     { field: 'price', headerName: 'Price', width: 130 },
+// ]
+
+// return (
+//     <div>
+//         <p>{doctorData.doctors}</p>
+//         <h1>Hello Doctors Page</h1>
+
+//         <div style={{ height: 400, width: '100%' }}>
+//             <DataGrid
+//                 rows={doctorData.doctors}
+//                 columns={columns}
+//                 pageSizeOptions={[5, 10]}
+//                 checkboxSelection
+//             />
+//         </div>
+//     </div>
+// );
+
+// }
+
+// export default Doctor;

@@ -8,7 +8,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Form, Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
-import EditIcon from '@mui/icons-material/Edit';
+// import EditIcon from '@mui/icons-material/Edit';
 
 
 function Medicinefrom({ onhandlesubmit, onupdate }) {
@@ -22,6 +22,7 @@ function Medicinefrom({ onhandlesubmit, onupdate }) {
     }, [onupdate])
 
     const handleClickOpen = () => {
+        console.log('555555555');
         setOpen(true);
     };
 
