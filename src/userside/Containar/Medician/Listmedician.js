@@ -26,23 +26,25 @@
 import React from 'react';
 import Cardcostom from '../../Components/UL/Cardcostom';
 
-function Listmedician({ mdata, onClick }) {
-    console.log(mdata);
+function Listmedician({ mdata, hableCard1 }) {
+    
+   
     return (
         <>
             {
-                mdata ?
+               
                     mdata.map((v, i) => {
                         return (
                             <div className='col-md-3'>
                                 <Cardcostom
                                     value={v}
-                                    onClick1={onClick}
+                                    onclick1={hableCard1}
+                                    btnval={'Add to Cart'}
                                 />
                             </div>
                         )
 
-                    }) : null
+                    }) 
             }
         </>
     );

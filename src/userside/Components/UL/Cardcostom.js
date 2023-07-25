@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 
-function Cardcostom({ value, onClick1 }) {
+function Cardcostom({ value, onclick1, btnval }) {
     return (
         <>
             {/* <Card
@@ -32,7 +32,7 @@ function Cardcostom({ value, onClick1 }) {
                     </CardText>
 
                     {
-                       value.Button ? <Button onClick={onClick1}>
+                       value.btn ? <Button onClick={onClick1}>
                             add card
                         </Button> 
                         :
@@ -47,10 +47,10 @@ function Cardcostom({ value, onClick1 }) {
                     width: '18rem'
                 }}
             >
-                <img
+                {/* <img
                     alt="Sample"
                     src="https://picsum.photos/300/200"
-                />
+                /> */}
                 <CardBody>
                     <CardTitle tag="h5">
                         {value.name}
@@ -64,9 +64,22 @@ function Cardcostom({ value, onClick1 }) {
                     <CardText>
                         {value.desc}
                     </CardText>
-                    <Button>
-                        Button
-                    </Button>
+                    {
+                       
+                       value.btn ? <Button>
+                            add card
+                        </Button> 
+                        :
+                        null
+                    }
+                    {
+                        btnval ?
+                            <Button onClick={() =>onclick1(value.id)}>
+                                {btnval}
+                            </Button> :
+                            null
+                    }
+
                 </CardBody>
             </Card>
         </>

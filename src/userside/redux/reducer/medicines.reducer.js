@@ -44,3 +44,6 @@ export const medicineReducher = (state = inistate, action) => {
             return state
     }
 }
+
+
+

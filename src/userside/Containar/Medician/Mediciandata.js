@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { getMedicineData } from '../../redux/action/medicine.action';
 import { useDispatch, useSelector } from 'react-redux';
 import Listmedician from './Listmedician'
+import { addToCart } from '../../redux/action/card.action';
 
 
 function Mediciandata(props) {
@@ -33,6 +34,7 @@ function Mediciandata(props) {
     }
 
     const handlecard = (id) => {
+        dispatch(addToCart(id))
         console.log("handle card call"+ id);
     }
 
@@ -52,7 +54,7 @@ function Mediciandata(props) {
                 <div className='row'>
                     <Listmedician
                         mdata={medicines.medicines ? medicines.medicines : []}
-                        onClick={handlecard()}
+                        hableCard1={handlecard}
                     />
                 </div>
             </div>
