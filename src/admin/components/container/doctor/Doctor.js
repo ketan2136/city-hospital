@@ -1,3 +1,4 @@
+//1
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -112,46 +113,3 @@ export default Doctor;
 
 
 
-
-
-// function Doctor(props) {
-
-//     const dispatch = useDispatch()
-   
-//     const doctorData = useSelector(state => state.doctors)
-    
-//     console.log(doctorData)
-
-//     useEffect(() => {
-//         dispatch(getDoctorData())
-//     }, [])
-
-//     // "id": 102,
-//     // "name": "ABC",
-//     // "price": 500
-
-// const columns = [
-//     { field: 'id', headerName: 'Id', width: 130 },
-//     { field: 'name', headerName: 'Name', width: 130 },
-//     { field: 'price', headerName: 'Price', width: 130 },
-// ]
-
-// return (
-//     <div>
-//         <p>{doctorData.doctors}</p>
-//         <h1>Hello Doctors Page</h1>
-
-//         <div style={{ height: 400, width: '100%' }}>
-//             <DataGrid
-//                 rows={doctorData.doctors}
-//                 columns={columns}
-//                 pageSizeOptions={[5, 10]}
-//                 checkboxSelection
-//             />
-//         </div>
-//     </div>
-// );
-
-// }
-
-// export default Doctor;

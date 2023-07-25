@@ -1,18 +1,17 @@
+import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Form, Formik, useFormik } from 'formik';
-import * as Yup from 'yup';
-// import EditIcon from '@mui/icons-material/Edit';
+import * as yup from 'yup'
+import Button from '@mui/material/Button';
 
 
 function Medicinefrom({ onhandlesubmit, onupdate }) {
-    const [open, setOpen] = React.useState(false); //1
+
+    const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
         if (onupdate) {
@@ -22,7 +21,6 @@ function Medicinefrom({ onhandlesubmit, onupdate }) {
     }, [onupdate])
 
     const handleClickOpen = () => {
-        console.log('555555555');
         setOpen(true);
     };
 
@@ -30,138 +28,127 @@ function Medicinefrom({ onhandlesubmit, onupdate }) {
         setOpen(false);
     };
 
-    var d = new Date();
-    let nd = new Date(d.setDate(d.getDate() - 1));
 
-    let appointmentSchema = Yup.object({
-        name: Yup.string().required('Enter your name'),
-        price: Yup.number().required('Please enter price'),
-        date: Yup.date().min(nd, 'enter valid date').required('Please enter date'),
-        desc: Yup.string().required('Please enter Description').test('desc', 'Max 100 Words allow',
-            function (val) {
-                let arr = val.split(" ");
+    let d = new Date();
+    let nd = new Date(d.setDate(d.getDate() - 1))
 
-                if (arr.length > 100) {
-                    return false
-                } else {
-                    return true
-                }
-            }),
+    let medicineschema = yup.object({
+        name: yup.string().required(),
+        expiry: yup.date().min(nd, "please entre a valid date").required(),
+        price: yup.number().required(),
+        desc: yup.string().required()
+
+        // desc: yup.string().required()
+        //     .test('desc', 'maxmium 3 word allowed.',
+        //         function (val) {
+        //             let arr = val.split(" ")
+
+        //             if (arr.length > 3) {
+        //                 return false
+        //             } else {
+        //                 return true
+        //             }
+        //         })
     });
-
 
     const formik = useFormik({
-        validationSchema: appointmentSchema,
+        validationSchema: medicineschema,
+
         initialValues: {
             name: '',
-            price: '',
             date: '',
-            desc: '',
-            action: ''
+            price: '',
+            desc: ''
         },
         onSubmit: (values, action) => {
-            onhandlesubmit(values);
-            handleClose();
-            // handleupdate()
-            action.resetForm();
-            // alert(JSON.stringify(values, null, 2));
+            // handlesubmitdata(values)
+            action.resetForm()
+            handleClose()
+            onhandlesubmit(values)
         },
+
     });
-
-
-    //     const handleupdate = (v) => {
-
-    //     Formik.setValues(v)
-    //     // setupdate(v)
-    //     handleClickOpen()
-
-    //   }
-
-
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
 
 
+
     return (
         <>
-            <div>
-                <Button variant="outlined" onClick={handleClickOpen}>
-                    Add Medicine
-                </Button>
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Add Medicine</DialogTitle>
+            <h1>Medicine</h1>
+            <Button variant="outlined" onClick={handleClickOpen}>
+                Open form Medicine
+            </Button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Medicine</DialogTitle>
+                <DialogContent>
+                    <form onSubmit={handleSubmit}>
+                        <TextField
 
-                    <DialogContent>
-                        <Form onSubmit={handleSubmit}>
-                            <DialogContentText>
-                                To subscribe to this website, please enter your email address here. We
-                                will send updates occasionally.
-                            </DialogContentText>
-                            <TextField
-                                margin="dense"
-                                id="name"
-                                name='name'
-                                label="Medicine Name"
-                                type="text"
-                                fullWidth
-                                variant="standard"
-                                value={values.name}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={errors.name && touched.name ? errors.name : ''}
-                                error={errors.name && touched.name ? errors.name : ''}
-                            />
-                            <TextField
-                                margin="dense"
-                                id="price"
-                                name='price'
-                                label="Price "
-                                type="number"
-                                fullWidth
-                                variant="standard"
-                                value={values.price}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={errors.cname && touched.cname ? errors.cname : ''}
-                                error={errors.price && touched.price ? errors.price : ''}
-                            />
-                            <TextField
-                                margin="dense"
-                                id="date"
-                                name='date'
-                                label="Expiry Date"
-                                type="date"
-                                fullWidth
-                                variant="standard"
-                                value={values.date}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={errors.date && touched.date ? errors.date : ''}
-                                error={errors.date && touched.date ? errors.date : ''}
-                            />
-                            <TextField
-                                fullWidth
-                                id="desc"
-                                name='desc'
-                                label="Description"
-                                multiline
-                                rows={4}
-                                variant="standard"
-                                value={values.desc}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                helperText={errors.desc && touched.desc ? errors.desc : ''}
-                                error={errors.desc && touched.desc ? errors.desc : ''}
-                            />
+                            margin="dense"
+                            id="name"
+                            label="Medicine name"
+                            name='name'
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            value={values.name}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}  </span>
+                        <TextField
 
-                            <DialogActions>
-                                <Button onClick={handleClose}>Cancel</Button>
-                                <Button type='submit'>Add</Button>
-                            </DialogActions>
-                        </Form>
-                    </DialogContent>
-                </Dialog>
-            </div>
+                            margin="dense"
+                            id="name"
+                            label=""
+                            name='expiry'
+                            type="date"
+                            fullWidth
+                            variant="standard"
+                            value={values.expiry}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <span style={{ color: 'red' }}>{errors.expiry && touched.expiry ? errors.expiry : null} </span>
+                        <TextField
+
+                            margin="dense"
+                            id="name"
+                            label="Medicine Price"
+                            name='price'
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            value={values.price}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <span style={{ color: 'red' }}>{errors.price && touched.price ? errors.price : null} </span>
+                        <TextField
+
+                            margin="dense"
+                            id="name"
+                            label="Medicine Description"
+                            name='desc'
+                            multiline
+                            rows={4}
+                            type="address"
+                            fullWidth
+                            variant="standard"
+                            value={values.desc}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
+                        <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.desc : null} </span>
+
+                        <DialogActions>
+                            <Button onClick={handleClose}>Cancel</Button>
+                            <Button type='submit' >submit</Button>
+                        </DialogActions>
+                    </form>
+                </DialogContent>
+            </Dialog>
         </>
     );
 }

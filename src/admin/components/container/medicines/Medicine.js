@@ -1,121 +1,133 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
-import Medicinefrom from './Medicinefrom';
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useDispatch, useSelector } from 'react-redux';
+import { addMedicineData, deleteMedicineData, getMedicineData, updateMedicineData } from '../../../../userside/redux/action/medicine.action';
+import Medicinefrom from './Medicinefrom';
 
 
-export default function Medicine() {
-
-  const [Data, setData] = React.useState([]);
+function Medicine(props) {
+  const [items, setItems] = React.useState([]);
   const [update, setupdate] = React.useState(null);
 
+  const dispatch = useDispatch();
+  const medicineData = useSelector (state => state.medicines)
 
-  //6
-  React.useEffect(() => {
-    let localData = JSON.parse(localStorage.getItem("medicine"));
 
-    if (localData !== null) {
-      setData(localData)
-    }
-  }, []);
+  useEffect(() => {
+    dispatch(getMedicineData())
+  }, [])
 
-  //3
+  
   const handlesubmitdata = (data) => {
-
-
-    let localdata = JSON.parse(localStorage.getItem('medicine'));
-
-    let rno = Math.floor(Math.random() * 1000);
-
-    var NewData = { id: rno, ...data };
-
-    if (localdata === null) {
-      localStorage.setItem('medicine', JSON.stringify([NewData]));
-      setData([NewData]) //4
+    if (update) {
+        dispatch(updateMedicineData(data))
     } else {
-      if (update) {
-        let udata = localdata.map((v) => {
-          if (v.id === data.id) {
-            return data;
-          } else {
-            return v;
-          }
-
-        })
-        localStorage.setItem('medicine', JSON.stringify(udata));
-        setData(udata)
-      } else {
-        localdata.push(NewData);
-        localStorage.setItem('medicine', JSON.stringify(localdata));
-        setData(localdata)//5
-      }
-
+        dispatch(addMedicineData(data))
     }
+    setupdate(null)
+}
+
+  // const handlesubmitdata = (data) => {
+  //   console.log(data);
+
+  //   let rno = Math.floor(Math.random() * 1000);
+
+  //   let newData = { id: rno, ...data };
+
+  //   let localdata = JSON.parse(localStorage.getItem("medicines"));
+
+  //   console.log(localdata);
+
+  //   if (localdata === null) {
+  //     localStorage.setItem("medicines", JSON.stringify([newData]))
+  //     setItems([newData])
+  //   } else {
+  //     if (update) {
+  //       let udata = localdata.map((v, i) => {
+  //         if (v.id === data.id) {
+  //           return data;
+  //         } else {
+  //           return v;
+  //         }
+  //       })
+  //       localStorage.setItem("medicines", JSON.stringify(udata))
+  //       setItems(udata)
+  //     } else {
+  //       localdata.push(newData)
+  //       localStorage.setItem("medicines", JSON.stringify(localdata))
+  //       setItems(localdata)
+  //     }
+
+  //   }
 
 
+  // };
+
+  const handleDelete = (id) => {
+  //   let localData = JSON.parse(localStorage.getItem("medicines"));
+
+  //   let fdata = localData.filter((v, i) => v.id !== id)
+
+  //   localStorage.setItem("medicines", JSON.stringify(fdata))
+
+  //   setItems(fdata)
+  //
+    dispatch(deleteMedicineData(id))
+
+}
+
+  const handleupdate = (data) => {
+    setupdate(data)
   }
 
-  const handleupdate = (v) => {
-
-    setupdate(v)
-   
-
-  }
-
-
-
-  const handledelet = (id) => {
-    let localdata = JSON.parse(localStorage.getItem('medicine'));
-
-    let fdata = localdata.filter((v, i) => v.id !== id);
-
-    localStorage.setItem('medicine', JSON.stringify(fdata));
-    setData(fdata)
-
-  }
 
   const columns = [
-    // { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Medicine', width: 130 },
+
+    // { field: 'id', headerName: 'ID', width: 130 },
+    { field: 'name', headerName: 'Name', width: 130 },
+    { field: 'expiry', headerName: 'ExpiryDate', width: 130 },
     { field: 'price', headerName: 'Price', width: 130 },
-    { field: 'date', headerName: 'Expiry Date', width: 130 },
-    { field: 'desc', headerName: 'Description', sortable: false, width: 400, },
+    { field: 'desc', headerName: 'Description', width: 130 },
     {
       field: 'action',
       headerName: 'Action',
-      width: 200,
+      width: 130,
       renderCell: (params) => (
         <>
-          <IconButton aria-label="delete" onClick={() => handledelet(params.row.id)}>
+          <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
             <DeleteIcon />
           </IconButton>
+
           <IconButton aria-label="edit" onClick={() => handleupdate(params.row)}>
-        <EditIcon />
-      </IconButton>
+            <EditIcon />
+          </IconButton>
         </>
-      )
-    },
+      ),
+
+    }
+
   ];
 
-  //2 //7
+
   return (
+
     <>
-      <Medicinefrom onhandlesubmit={handlesubmitdata} onupdate={update}/>
-      <div style={{ height: 470, width: '100%' }}>
+      <Medicinefrom onhandlesubmit={handlesubmitdata} onupdate={update} />
+
+      <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={Data}
+          rows={medicineData.medicines}
           columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 7 },
-            },
-          }}
-          pageSizeOptions={[7, 14]}
+          pageSizeOptions={[5, 10]}
           checkboxSelection
         />
       </div>
     </>
   );
 }
+
+export default Medicine;

@@ -1,4 +1,7 @@
+//2
 import * as ActionTypes from '../ActionType'
+
+//--------------------------------------Doctors--------------------------------------------//
 
 export const getDoctorData = () => (dispatch) => {
     try {
@@ -12,11 +15,12 @@ export const getDoctorData = () => (dispatch) => {
                     throw new Error('Somthing went wrong')
                 })
                 .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
-                .catch((error) => console.log(error))
+                .catch((error) => dispatch(errorData(error.message)))
         }, 3000);
 
     } catch (error) {
         console.log(error);
+        dispatch(errorData(error.message))
     }
 }
 
@@ -68,7 +72,10 @@ export const updateDoctorData = (data) => (dispatch) => {
 export const loading = (status) => (dispatch) => {
     dispatch({ type: ActionTypes.LOADING_DOCTORS, payload: status })
 }
-export const error = (error) => (dispatch) => {
-    
-    dispatch({ type: ActionTypes.LOADING_DOCTORS, payload: status })
+
+
+
+export const errorData = (error) => (dispatch) => {
+    console.log("error");
+    dispatch({ type: ActionTypes.ERROR_DOCTORS, payload: error })
 }
