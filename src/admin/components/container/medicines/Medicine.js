@@ -14,22 +14,22 @@ function Medicine(props) {
   const [update, setupdate] = React.useState(null);
 
   const dispatch = useDispatch();
-  const medicineData = useSelector (state => state.medicines)
+  const medicineData = useSelector(state => state.medicines)
 
 
   useEffect(() => {
     dispatch(getMedicineData())
   }, [])
 
-  
+
   const handlesubmitdata = (data) => {
     if (update) {
-        dispatch(updateMedicineData(data))
+      dispatch(updateMedicineData(data))
     } else {
-        dispatch(addMedicineData(data))
+      dispatch(addMedicineData(data))
     }
     setupdate(null)
-}
+  }
 
   // const handlesubmitdata = (data) => {
   //   console.log(data);
@@ -68,17 +68,8 @@ function Medicine(props) {
   // };
 
   const handleDelete = (id) => {
-  //   let localData = JSON.parse(localStorage.getItem("medicines"));
-
-  //   let fdata = localData.filter((v, i) => v.id !== id)
-
-  //   localStorage.setItem("medicines", JSON.stringify(fdata))
-
-  //   setItems(fdata)
-  //
     dispatch(deleteMedicineData(id))
-
-}
+  }
 
   const handleupdate = (data) => {
     setupdate(data)

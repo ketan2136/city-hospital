@@ -1,11 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+        right: -3,
+        top: 13,
+        border: `2px solid ${theme.palette.background.paper}`,
+        padding: '0 4px',
+    },
+}));
 
 function Header(props) {
 
     let localData = localStorage.getItem("loginstatus");
 
-    const handlelogout =() => {
+    let cartData = useSelector((state) => state.card);
+
+    let countCart = 0;
+
+    if (countCart.item) {
+        countCart = cartData.item.reduce((acc, v, i) => acc + v.qty, 0);
+    }
+
+  
+    console.log(cartData);
+
+    const handlelogout = () => {
         localStorage.removeItem("loginstatus")
     }
 
@@ -45,18 +70,27 @@ function Header(props) {
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
+                    {/* <Link to={"/newcart"}>new card</Link> */}
+                    <Link to="/cart">
+                        <IconButton aria-label="cart">
+                            <StyledBadge badgeContent={countCart} color="secondary">
+                                <ShoppingCartIcon />
+                            </StyledBadge>
+                        </IconButton>
+                    </Link>
+
                     <Link to={'/Appointment'} href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
                         Appointment</Link>
-                        {
-                            localData?
+                    {
+                        localData ?
                             <Link to={'/'} href="#" className="appointment-btn scrollto" onClick={handlelogout}>
-                            <span className="d-none d-md-inline">logout</span>
-                        </Link> :
-                         <Link to={'/auth1'} href="#" className="appointment-btn scrollto">
-                         <span className="d-none d-md-inline">Login/ Signup</span>
-                     </Link>
-                        }
-                   
+                                <span className="d-none d-md-inline">logout</span>
+                            </Link> :
+                            <Link to={'/auth1'} href="#" className="appointment-btn scrollto">
+                                <span className="d-none d-md-inline">Login/ Signup</span>
+                            </Link>
+                    }
+
                 </div>
             </header>
         </div>

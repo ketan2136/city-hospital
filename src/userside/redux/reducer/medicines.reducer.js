@@ -7,8 +7,7 @@ const inistate = {
 }
 
 export const medicineReducher = (state = inistate, action) => {
-    console.log(action.payload);
-
+   
     switch (action.type) {
         case ActionTypes.GET_MEDICINE:
             return {

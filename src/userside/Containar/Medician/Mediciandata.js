@@ -15,7 +15,7 @@ function Mediciandata(props) {
         dispatch(getMedicineData())
     }, []);
 
-    console.log(medicines.medicines);
+  
 
     const handlechange = (val) => {
 

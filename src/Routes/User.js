@@ -15,11 +15,11 @@ import Auth from "../userside/Containar/Auth";
 import Auth1 from "../userside/Containar/Auth1";
 import Exam from "../userside/Containar/Exam";
 import Mediciandata from '../userside/Containar/Medician/Mediciandata';
-// import PrivateRouter from '../userside/Containar/Medician/PrivateRouter';
 import PrivateRoute from './PrivateRoute';
 import Counter from '../userside/Containar/counter/Counter';
 import { Provider } from 'react-redux';
 import { configureStore } from '../userside/redux/Store';
+import Cart from '../userside/Containar/cart/Cart';
 
 
 
@@ -27,51 +27,56 @@ function User(props) {
     const store = configureStore();
     return (
         <>
-         <Provider store={store}>
-            <Header />
+            <Provider store={store}>
+                <Header />
 
 
 
-            {/* <Exam /> */}
-            <Routes>
-                <Route path='/counter' element={ <Counter />} />
-                <Route exact path='/' element={<Home />} />
-                {/* <PrivateRouter path='/about' element={<About />} /> */}
+                {/* <Exam /> */}
+                <Routes>
+                    <Route path='/counter' element={<Counter />} />
+                    <Route exact path='/' element={<Home />} />
+                    {/* <PrivateRouter path='/about' element={<About />} /> */}
 
-                <Route path='/about' element={<About />} />
-                <Route path='/Appointment' element={<Appointment />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/Appointment' element={<Appointment />} />
 
-                <Route path='/Contact' element={<Contact />} />
-                <Route path='/Departments' element={<Departments />} />
-                <Route path='/Doctors' element={<Doctors />} />
-                <Route path='/Doctor/:id' element={<Doctor />} />
-                <Route path='/Doctor/Visiting_Doctor' element={<VisitingDoctor />} />
+                    <Route path='/Contact' element={<Contact />} />
+                    <Route path='/Departments' element={<Departments />} />
+                    <Route path='/Doctors' element={<Doctors />} />
+                    <Route path='/Doctor/:id' element={<Doctor />} />
+                    <Route path='/Doctor/Visiting_Doctor' element={<VisitingDoctor />} />
 
-                <Route path='/Doctor/'>
-                    <Route path=':id' element={<Doctor />} />
-                    <Route path='Visiting_Doctor' element={<VisitingDoctor />} />
-                </Route>
+                    <Route path='/Doctor/'>
+                        <Route path=':id' element={<Doctor />} />
+                        <Route path='Visiting_Doctor' element={<VisitingDoctor />} />
+                    </Route>
 
-                <Route path='*' element={<Notfound />}></Route>
-
-
-                <Route path='/auth1' element={<Auth1 />}></Route>
+                    <Route path='*' element={<Notfound />}></Route>
 
 
-                <Route element={<PrivateRoute />}>
-                    <Route path='/mediciandisplay' element={<Mediciandata />} />
-                </Route>
-                {/* <PrivateRouter path='/mediciandisplay' element={<Mediciandata />} /> */}
+                    <Route path='/auth1' element={<Auth1 />}></Route>
 
 
-                {/* <Route path='/auth' element={<Auth />}></Route>  */}
+                    <Route element={<PrivateRoute />}>
+                        <Route path='/mediciandisplay' element={<Mediciandata />} />
+                    </Route>
+
+                    <Route path='cart' element={<Cart />} />
+                    {/* <Route path='/newcart' element={<New_cart />} /> */}
+                    {/* <PrivateRouter path='/mediciandisplay' element={<Mediciandata />} /> */}
 
 
-            </Routes>
-            <Footer />
+                    {/* <Route path='/auth' element={<Auth />}></Route>  */}
+
+
+
+                </Routes>
+                <Footer />
             </Provider>
         </>
     );
 }
 
 export default User;
+
