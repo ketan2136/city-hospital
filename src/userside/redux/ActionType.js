@@ -19,3 +19,5 @@ export const ADD_TO_CARD = "ADD_TO_CARD";
 export const ICN_CARD = "ICN_CARD";
 export const DEN_CARD = "DEN_CARD";
 export const REMOVE_CARD = "REMOVE_CART";
+
+export const ADD_FEVORITE ="ADD_FEVORITE";

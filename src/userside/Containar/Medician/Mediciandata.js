@@ -38,6 +38,10 @@ function Mediciandata(props) {
         console.log("handle card call"+ id);
     }
 
+    const handleFevorite = (id) => {
+        console.log('handle call fevorite'+id);
+    }
+
     return (
         <section id="contact" className="contact">
             <div className="container">
@@ -55,6 +59,7 @@ function Mediciandata(props) {
                     <Listmedician
                         mdata={medicines.medicines ? medicines.medicines : []}
                         hableCard1={handlecard}
+                        handleFevorite1={handleFevorite}
                     />
                 </div>
             </div>

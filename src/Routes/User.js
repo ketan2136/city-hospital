@@ -20,6 +20,10 @@ import Counter from '../userside/Containar/counter/Counter';
 import { Provider } from 'react-redux';
 import { configureStore } from '../userside/redux/Store';
 import Cart from '../userside/Containar/cart/Cart';
+import FevoriteCart from '../userside/Containar/fevorite/FevoriteCart';
+import Cart1 from '../userside/Containar/Cart1/Cart1';
+
+import NewMedicine from '../userside/Containar/new_medicine/NewMedicine';
 
 
 
@@ -62,8 +66,11 @@ function User(props) {
                         <Route path='/mediciandisplay' element={<Mediciandata />} />
                     </Route>
 
-                    <Route path='cart' element={<Cart />} />
-                    {/* <Route path='/newcart' element={<New_cart />} /> */}
+                    <Route path='/cart' element={<Cart />} />
+                    <Route path='/cart1' element={<Cart1 />} />
+                    <Route path='/newmedicine' element={<NewMedicine />}/>
+
+                    <Route path='/fevorite' element={<FevoriteCart />} />
                     {/* <PrivateRouter path='/mediciandisplay' element={<Mediciandata />} /> */}
 
 

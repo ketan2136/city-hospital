@@ -1,8 +1,9 @@
 import { Height } from '@mui/icons-material';
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-function Cardcostom({ value, onclick1, btnval }) {
+function Cardcostom({ value, onclick1, btnval, fevorite, onclick2 }) {
     return (
         <>
             <Card
@@ -11,10 +12,14 @@ function Cardcostom({ value, onclick1, btnval }) {
                     Height: '18rem'
                 }}
             >
-                {/* <img
-                    alt="Sample"
-                    src="https://picsum.photos/300/200"
-                /> */}
+                {
+                    fevorite ?
+                        <FavoriteBorderIcon onClick={() => onclick2(value.id)} />
+                        : null
+                }
+
+
+
                 <CardBody>
                     <CardTitle tag="h5">
                         {value.name}
