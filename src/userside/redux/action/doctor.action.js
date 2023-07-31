@@ -1,21 +1,30 @@
 //2
+import { getDoctoApi } from '../../../common/apis/doctors.api';
 import * as ActionTypes from '../ActionType'
 
 //--------------------------------------Doctors--------------------------------------------//
 
 export const getDoctorData = () => (dispatch) => {
     try {
-        dispatch(loading(true))
+        // dispatch(loading(true))
+
+
+
         setTimeout(function () {
-            fetch("http://localhost:3004/doctor")
-                .then((response) => {
-                    if (response.ok) {
-                        response.json()
-                    }
-                    throw new Error('Somthing went wrong')
-                })
-                .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
+
+            getDoctoApi()
+                .then((response) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: response.data }))
                 .catch((error) => dispatch(errorData(error.message)))
+
+            // fetch("http://localhost:3004/doctor")
+            //     .then((response) => {
+            //         if (response.ok) {
+            //             response.json()
+            //         }
+            //         throw new Error('Somthing went wrong')
+            //     })
+            //     .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
+            //     .catch((error) => dispatch(errorData(error.message)))
         }, 3000);
 
     } catch (error) {
