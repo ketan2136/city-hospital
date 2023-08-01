@@ -1,8 +1,7 @@
 
 //1import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { decrement, increment } from '../../../redux/action/counter.action';
-import { decrement, increment } from '../../redux/action/counter.action';
+import { decrement, increment } from '../../redux/slice/CounterSlice';
 
 function Counter(props) {
     const dispatch = useDispatch()
@@ -18,11 +17,15 @@ function Counter(props) {
     }
 
     return (
+        <>
+        <h1>hhh</h1>
+       
         <div>
             <button onClick={() => handleInc()}>+</button>
             <span>{couterData.count}</span>
             <button onClick={() => handleDec()}>-</button>
         </div>
+        </>
     );
 }
 

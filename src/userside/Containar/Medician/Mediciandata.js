@@ -3,6 +3,7 @@ import { getMedicineData } from '../../redux/action/medicine.action';
 import { useDispatch, useSelector } from 'react-redux';
 import Listmedician from './Listmedician'
 import { addToCart } from '../../redux/action/card.action';
+import { addToFevorite } from '../../redux/action/fevorite.action';
 
 
 function Mediciandata(props) {
@@ -39,6 +40,7 @@ function Mediciandata(props) {
     }
 
     const handleFevorite = (id) => {
+        dispatch(addToFevorite(id))
         console.log('handle call fevorite'+id);
     }
 

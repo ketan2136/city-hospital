@@ -34,9 +34,9 @@ function FevoriteCart(props) {
                 <div className="section-title">
                     <h2>Fevorite data</h2>
                 </div>
-                {/* {
+                {
                       cartItems.map((c, i) => {
-                        return ( */}
+                        return (
                             <div className="card mb-3">
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between">
@@ -58,9 +58,9 @@ function FevoriteCart(props) {
                                     </div>
                                 </div>
                             </div>
-                        {/* )
+                        )
                     })
-                }  */}
+                }  
             </div>
         </section>
     );

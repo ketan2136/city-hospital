@@ -25,24 +25,34 @@
   },
   "doctor": [
     {
-      "id": 101,
-      "name": "reng",
-      "price": 500
+      "name": "fdfd",
+      "price": "54",
+      "id": 108
     },
     {
-      "id": 102,
-      "name": "Rto",
-      "price": "50000"
+      "name": "kjhh",
+      "price": "220",
+      "id": 109
     },
     {
-      "id": 103,
-      "name": "happy",
-      "price": 500
+      "name": "rk",
+      "price": "252",
+      "id": 110
     },
     {
-      "id": 104,
-      "name": "car",
-      "price": "120"
+      "name": "kjhh",
+      "price": "565",
+      "id": 111
+    },
+    {
+      "name": "gavo",
+      "price": "585",
+      "id": 112
+    },
+    {
+      "name": "type",
+      "price": "120",
+      "id": 113
     }
   ],
   "medicines": [

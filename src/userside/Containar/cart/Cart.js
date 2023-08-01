@@ -21,6 +21,8 @@ function Cart(props) {
         return fData;
     })
 
+    console.log(cartItems);
+
     const handleInc = (id) => {
         dispatch(incrementCart(id))
     }

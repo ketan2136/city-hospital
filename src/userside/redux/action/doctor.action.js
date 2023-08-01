@@ -1,12 +1,12 @@
 //2
-import { getDoctoApi } from '../../../common/apis/doctors.api';
+import { addDoctorApi, deleteDoctorApi, getDoctoApi, putDoctorApi } from '../../../common/apis/doctors.api';
 import * as ActionTypes from '../ActionType'
 
 //--------------------------------------Doctors--------------------------------------------//
 
 export const getDoctorData = () => (dispatch) => {
     try {
-        // dispatch(loading(true))
+        dispatch(loading(true))
 
 
 
@@ -35,16 +35,20 @@ export const getDoctorData = () => (dispatch) => {
 
 export const addDoctorData = (data) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/doctor", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((data) => dispatch({ type: ActionTypes.ADD_DOCTORS, payload: data }))
-            .catch((error) => console.log(error))
+        addDoctorApi(data)
+            .then((response) => dispatch({ type: ActionTypes.ADD_DOCTORS, payload: response.data }))
+            .catch((error) => dispatch(errorData(error.message)))
+
+        // fetch("http://localhost:3004/doctor", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        //     .then((response) => response.json())
+        //     .then((data) => dispatch({ type: ActionTypes.ADD_DOCTORS, payload: data }))
+        //     .catch((error) => console.log(error))
     } catch (error) {
         console.log(error);
     }
@@ -52,11 +56,15 @@ export const addDoctorData = (data) => (dispatch) => {
 
 export const deleteDoctorData = (id) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/doctor" + id, {
-            method: "DELETE"
-        })
+
+        deleteDoctorApi(id)
             .then(dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id }))
             .catch((error) => console.log(error))
+        // fetch("http://localhost:3004/doctor" + id, {
+        //     method: "DELETE"
+        // })
+        //     .then(dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id }))
+        //     .catch((error) => console.log(error))
     } catch (error) {
         console.log(error);
     }
@@ -64,15 +72,19 @@ export const deleteDoctorData = (id) => (dispatch) => {
 
 export const updateDoctorData = (data) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/Doctor/" + data.id, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
+        putDoctorApi(data)
             .then(dispatch({ type: ActionTypes.UPDATE_DOCTORS, payload: data }))
             .catch((error) => console.log(error))
+
+        // fetch("http://localhost:3004/Doctor/" + data.id, {
+        //     method: "PUT",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        //     .then(dispatch({ type: ActionTypes.UPDATE_DOCTORS, payload: data }))
+        //     .catch((error) => console.log(error))
     } catch (error) {
         console.log(error)
     }
