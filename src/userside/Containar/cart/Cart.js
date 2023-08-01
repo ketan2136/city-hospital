@@ -1,7 +1,8 @@
 import { Button } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrementCart, incrementCart, removeCart } from '../../redux/action/card.action';
+//import { decrementCart, incrementCart, removeCart } from '../../redux/action/card.action';
+import {removeCart, increment, decrement } from '../../redux/slice/CartSlice';
 
 
 function Cart(props) {
@@ -24,10 +25,10 @@ function Cart(props) {
     console.log(cartItems);
 
     const handleInc = (id) => {
-        dispatch(incrementCart(id))
+        dispatch(increment(id))
     }
     const handleDnc = (id) => {
-        dispatch(decrementCart(id))
+        dispatch(decrement(id))
     }
 
     const handleRemove = (id) => {
@@ -51,7 +52,7 @@ function Cart(props) {
                                                 <div className="d-flex flex-row align-items-center">
                                                     <div className="ms-3">
                                                         <h5>{c.name}</h5>
-                                                        <p className="small mb-0">{c.desc.substring(0,20)}</p>
+                                                        <p className="small mb-0">{c.desc}</p>
                                                     </div>
                                                 </div>
                                                 <div className="d-flex flex-row align-items-center">

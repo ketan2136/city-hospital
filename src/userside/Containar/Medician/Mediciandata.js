@@ -2,7 +2,7 @@ import React from 'react';
 import { getMedicineData } from '../../redux/action/medicine.action';
 import { useDispatch, useSelector } from 'react-redux';
 import Listmedician from './Listmedician'
-import { addToCart } from '../../redux/action/card.action';
+import { addToCart } from '../../redux/slice/CartSlice';
 import { addToFevorite } from '../../redux/action/fevorite.action';
 
 
@@ -35,7 +35,7 @@ function Mediciandata(props) {
     }
 
     const handlecard = (id) => {
-        dispatch(addToCart(id))
+        dispatch(addToCart({pid : id, qty: 1}))
         console.log("handle card call"+ id);
     }
 
