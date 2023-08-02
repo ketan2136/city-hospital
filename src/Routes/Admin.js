@@ -7,13 +7,13 @@ import Time from "../admin/components/container/Time";
 import Login from "../admin/components/container/Login";
 // import Info from "../admin/components/container/Info";
 import Info from "../admin/components/container/Info"
-
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../admin/components/container/medicines/Medicine';
 import Desboard from '../admin/components/container/Desboard/Desboard';
 import { configureStore } from '../userside/redux/Store';
 import { Provider } from 'react-redux';
 import Doctor from '../admin/components/container/doctor/Doctor';
+import Department from '../admin/components/container/department/Department';
 
 
 function Admin(props) {
@@ -32,6 +32,7 @@ function Admin(props) {
           <Route path='/Login' element={<Login />}></Route>
           <Route path='/Info' element={<Info />}></Route>
           <Route path='/medicine' element={<Medicine />}></Route>
+          <Route path='/departmaent' element={<Department />} />
         </Routes>
       </Muidrower>
     </Provider>

@@ -31,42 +31,6 @@ function Medicine(props) {
     setupdate(null)
   }
 
-  // const handlesubmitdata = (data) => {
-  //   console.log(data);
-
-  //   let rno = Math.floor(Math.random() * 1000);
-
-  //   let newData = { id: rno, ...data };
-
-  //   let localdata = JSON.parse(localStorage.getItem("medicines"));
-
-  //   console.log(localdata);
-
-  //   if (localdata === null) {
-  //     localStorage.setItem("medicines", JSON.stringify([newData]))
-  //     setItems([newData])
-  //   } else {
-  //     if (update) {
-  //       let udata = localdata.map((v, i) => {
-  //         if (v.id === data.id) {
-  //           return data;
-  //         } else {
-  //           return v;
-  //         }
-  //       })
-  //       localStorage.setItem("medicines", JSON.stringify(udata))
-  //       setItems(udata)
-  //     } else {
-  //       localdata.push(newData)
-  //       localStorage.setItem("medicines", JSON.stringify(localdata))
-  //       setItems(localdata)
-  //     }
-
-  //   }
-
-
-  // };
-
   const handleDelete = (id) => {
     dispatch(deleteMedicineData(id))
   }

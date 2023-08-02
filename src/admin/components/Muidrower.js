@@ -25,6 +25,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PersonIcon from '@mui/icons-material/Person';
 import InfoIcon from '@mui/icons-material/Info';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 
 const drawerWidth = 240;
 
@@ -36,7 +37,7 @@ const Drowerdata = [
   { labal: 'About', to: '/Admin/Info', icon: <InfoIcon /> },
   { labal: 'Login in / sign up', to: '/Admin/Login', icon: <PersonIcon /> },
   { labal: 'medicine', to: '/Admin/medicine', icon: <MedicalServicesIcon /> },
-  
+  { labal: 'departmaent', to: '/Admin/departmaent', icon: <LocalFireDepartmentIcon /> },
 ]
 
 const openedMixin = (theme) => ({
