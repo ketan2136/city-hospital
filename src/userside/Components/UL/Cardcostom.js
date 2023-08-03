@@ -31,7 +31,7 @@ function Cardcostom({ value, onclick1, btnval, fevorite, onclick2 }) {
                         {value.price}
                     </CardSubtitle>
                     <CardText>
-                        {value.desc}
+                        {value.desc }
                     </CardText>
                     {
 

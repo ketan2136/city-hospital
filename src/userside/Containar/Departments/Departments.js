@@ -12,7 +12,7 @@ function Departments(props) {
         dispatch(FetchDepartment())
     }, []);
 
-  
+
 
     const handlechange = (val) => {
 
@@ -32,7 +32,6 @@ function Departments(props) {
             <div className="container">
                 <div className="section-title">
                     <h2>Departments</h2>
-                    {/* <Heading type='h2'>Departments</Heading> */}
                 </div>
                 <div className="row">
                     <div className="col-lg-3">
@@ -53,6 +52,15 @@ function Departments(props) {
                                 <a className="nav-link" data-bs-toggle="tab" href="#tab-5">Neurosurgery</a>
                             </li>
                         </ul>
+                    </div>
+                    <div className="container" >
+                        <input type='search ' name='searce' onChange={(e) => handlechange(e.target.value)}></input>
+                        <div className='row'>
+                            <ListDepartments
+                                departmentData={departments.department ? departments.department : []}
+
+                            />
+                        </div>
                     </div>
                     <div className="col-lg-9 mt-4 mt-lg-0">
                         <div className="tab-content">
@@ -139,8 +147,8 @@ function Departments(props) {
                 <input type='search ' name='searce' onChange={(e) => handlechange(e.target.value)}></input>
                 <div className='row'>
                     <ListDepartments
-                        departmentData={departments.department ?departments.department : []}
-                       
+                        departmentData={departments.department ? departments.department : []}
+
                     />
                 </div>
             </div>
