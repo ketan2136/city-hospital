@@ -1,22 +1,19 @@
 import React from 'react';
 import Cardcostom from '../../Components/UL/Cardcostom';
 
-function Listmedician({ mdata, hableCard1 , handleFevorite1}) {
+function Listmedician({ departmentData }) {
     
    
     return (
         <>
             {
                
-                    mdata.map((v, i) => {
+               departmentData.map((v, i) => {
                         return (
                             <div className='col-md-4'>
                                 <Cardcostom
                                     value={v}
-                                    onclick1={hableCard1}
-                                    btnval={'Add to Cart'}
-                                    onclick2={handleFevorite1}
-                                    fevorite={'Add to fevorite'}
+                                    btnVal={'ADD to Department'}
                                 />
                             </div>
                         )

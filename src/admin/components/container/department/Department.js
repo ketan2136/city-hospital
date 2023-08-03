@@ -1,90 +1,92 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
-import DepartmentFrom from './DepartmentFrom';
 import { useDispatch, useSelector } from 'react-redux';
+import { DataGrid } from '@mui/x-data-grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { addDepartments, getDepartment } from '../../../../userside/redux/action/department.action';
+import CircularProgress from '@mui/material/CircularProgress';
+
+import { Adddepartmentdata, Deletedepartmentdata, Editdepartmentdata, FetchDepartment } from '../../../../userside/redux/slice/DepartmentSlice';
+import DepartmentFrom from './DepartmentFrom';
+
+function Department(props) {
+    const [update, setUpdate] = React.useState(null);
+    const Dispatch = useDispatch()
+    const departments = useSelector(state => state.department)
+
+console.log(departments.department);
 
 
+    useEffect(() => {
 
-export default function Department() {
+        Dispatch(FetchDepartment())
 
-    const [update, setupdate] = React.useState(null);
-    const dispatch = useDispatch()
-    const departmentData = useSelector(state => state.departments)
-  
-
-    React.useEffect(() => {
-        dispatch(getDepartment())
     }, [])
 
-    const handleDelete = (id) => {
-        console.log(id);
-        // dispatch(deleteDoctorData(id))
-    }
 
-    const handleupdate = (data) => {
-        setupdate(data)
-    }
-
+   const handleDelete = (id) => {
+        Dispatch(Deletedepartmentdata(id))
+   }
+   const handleUpdate = (data) => {
+    // Dispatch(Editdepartmentdata(data)) 
+        setUpdate(data)
+   }
     const columns = [
+
         { field: 'name', headerName: 'Name', width: 130 },
-        { field: 'desc', headerName: 'description ', width: 130 },
+        { field: 'desc', headerName: 'desc', width: 130 },
         {
             field: 'action',
             headerName: 'Action',
             width: 130,
             renderCell: (params) => (
-                <>
-                    <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
-                        <DeleteIcon />
-                    </IconButton>
+              <>
+                <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+                  <DeleteIcon />
+                </IconButton>
+                <IconButton aria-label="delete" onClick={() => handleUpdate(params.row)}>
+                  <EditIcon />
+                </IconButton>
 
-                    <IconButton aria-label="edit" onClick={() => handleupdate(params.row)}>
-                        <EditIcon />
-                    </IconButton>
-                </>
-            ),
+              </>
 
-        }
-    ]
+            )
+          },
 
-    // const handlesubmit = (data) => {
-    //     dispatch(addDepartments(data))
-    //     // if (update) {
-    //     //     // dispatch(updateDoctorData(data))
-    //     // } else {
-    //     //     // dispatch(addDoctorData(data))
-    //     // }
-    //     setupdate(null)
-    // }
+    ];
 
+const handleSubmit = (data) => {
+    console.log(data);
+    if(update){
+        Dispatch(Editdepartmentdata(data))
+    }else{
+        Dispatch(Adddepartmentdata(data));
 
+    }  
+    setUpdate(null)
+}
     return (
-        <>
+        <div >
+             <Box height={100} />
+{ 
+    departments.loading ?<CircularProgress /> : 
+    <>
+     <DepartmentFrom onHandlesumit={handleSubmit} update={update}/>
 
-      
-            <DepartmentFrom  onupdate={update} />
-            <div style={{ height: 400, width: '100%' }}>
+            <div style={{ height: "90vh", width: '100%' }}>
                 <DataGrid
-                    rows={departmentData.departments}
+                    rows={departments.department}
                     columns={columns}
-                    initialState={{
-                        pagination: {
-                            paginationModel: {
-                                pageSize: 5,
-                            },
-                        },
-                    }}
-                    pageSizeOptions={[5]}
-                    checkboxSelection
-                    disableRowSelectionOnClick
                 />
             </div>
-        </>
+
+    </>
+}
+
+
+        </div>
     );
 }
 
+export default Department;

@@ -1,7 +1,32 @@
 import React from 'react';
-import Heading from '../../Components/UL/Heading/Heading';
+import { useDispatch, useSelector } from 'react-redux';
+import { FetchDepartment } from '../../redux/slice/DepartmentSlice';
+import ListDepartments from './ListDepartments'
 
 function Departments(props) {
+    const dispatch = useDispatch();
+    const departments = useSelector(state => state.department)
+
+    console.log(departments.department);
+    React.useEffect(() => {
+        dispatch(FetchDepartment())
+    }, []);
+
+  
+
+    const handlechange = (val) => {
+
+
+        let fdata = departments.department.filter((v) =>
+            v.name.toLowerCase().includes(val.toLowerCase()) ||
+            v.desc.toLowerCase().includes(val.toLowerCase())
+
+        );
+        console.log(fdata);
+
+
+
+    }
     return (
         <section id="departments" className="departments">
             <div className="container">
@@ -108,6 +133,15 @@ function Departments(props) {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="container" >
+                <input type='search ' name='searce' onChange={(e) => handlechange(e.target.value)}></input>
+                <div className='row'>
+                    <ListDepartments
+                        departmentData={departments.department ?departments.department : []}
+                       
+                    />
                 </div>
             </div>
         </section>

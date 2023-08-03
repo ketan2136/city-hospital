@@ -1,109 +1,119 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
+import { object, string, number, date, InferType } from 'yup';
+import { Formik, useFormik } from 'formik';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { useFormik } from 'formik';
-import * as yup from 'yup'
+import { DialogTitle } from '@mui/material';
+
+function DepartmentFrom({ onHandlesumit, update }) {
+
+  const [open, setOpen] = React.useState(false);
+
+  useEffect(() => {
+    if (update) {
+      Formik.setValues(update)
+      handleClickOpen();
+    }
+
+  }, [update])
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+
+  };
+
+  let d = new Date();
+  let nd = new Date(d.setDate(d.getDate() - 1))
+  let doctorschema = object({
+
+    name: string().required('pealse enter name'),
+    desc: string().required('pealse enter descrition'),
+
+  })
 
 
-export default function DepartmentFrom({ onhandlesubmit, onupdate }) {
-    const [open, setOpen] = React.useState(false);
-
-    React.useEffect(() => {
-        if (onupdate) {
-            formik.setValues(onupdate)
-            handleClickOpen()
-        }
-    }, [onupdate])
+  const Formik = useFormik({
+    initialValues: {
+      name: '',
+      desc: ''
 
 
+    },
+    validationSchema: doctorschema,
+    onSubmit: (values, action) => {
+
+      action.resetForm()
+      handleClose();
+      onHandlesumit(values);
+
+    },
+  });
+  const { values, handleBlur, handleSubmit, errors, touched, handleChange } = Formik
+  return (
+    <>
+      <h1>Department</h1>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open form Department
+      </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Department</DialogTitle>
+        <DialogContent>
+          <form onSubmit={handleSubmit}>
+            <TextField
+
+              margin="dense"
+              id="name"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              label="Name"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            {
+              errors.name && touched.name ?
+                <span className='error' style={{ color: 'red' }}>{errors.name}</span> : null
+            }
+
+            <TextField
+
+              margin="dense"
+              id="name"
+              name="desc"
+              value={values.desc}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              rows={4}
+              label="dec"
+              type="address"
+              fullWidth
+              variant="standard"
+            />
+            {
+              errors.desc && touched.desc ?
+                <span className='error' style={{ color: 'red' }}>{errors.desc}</span> : null
+            }
 
 
-    let d = new Date();
-    let nd = new Date(d.setDate(d.getDate() - 1))
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button type='submit' onClick={handleClose}>Sumbit</Button>
+            </DialogActions>
+          </form>
+        </DialogContent>
 
-    let medicineschema = yup.object({
-        name: yup.string().required(),
-        desc: yup.string().required()
-    });
-
-    const formik = useFormik({
-        validationSchema: medicineschema,
-
-        initialValues: {
-            name: '',
-            desc: ''
-        },
-        onSubmit: (values, action) => {
-            // handlesubmitdata(values)
-            action.resetForm()
-            handleClose()
-            onhandlesubmit(values)
-        },
-
-    });
-
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
-
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    return (
-        <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Open form dialog
-            </Button>
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Subscribe</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We
-                        will send updates occasionally.
-                    </DialogContentText>
-                    <TextField
-                        margin="dense"
-                        id="name"
-                        label="name"
-                        name='name'
-                        type="text"
-                        fullWidth
-                        variant="standard"
-                        value={values.name}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                    <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}  </span>
-                    <TextField
-                        margin="dense"
-                        id="name"
-                        label="Description"
-                        name='desc'
-                        multiline
-                        rows={4}
-                        type="address"
-                        fullWidth
-                        variant="standard"
-                        value={values.desc}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                    <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.desc : null} </span>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Subscribe</Button>
-                </DialogActions>
-            </Dialog>
-        </div>
-    );
+      </Dialog>
+    </>
+  );
 }
+
+export default DepartmentFrom;
