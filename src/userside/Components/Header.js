@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -6,6 +6,8 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { ThemeContext } from '../../ConText/ThemeProvider';
+import { dark, light } from '@mui/material/styles/createPalette';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -17,6 +19,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 function Header(props) {
+
+    let theme = useContext(ThemeContext);
+
+    console.log(theme);
 
     let localData = localStorage.getItem("loginstatus");
 
@@ -36,8 +42,8 @@ function Header(props) {
     }
 
     return (
-        <div className="main-header">
-            <div id="topbar" className="d-flex align-items-center fixed-top">
+        <div className={`main-header  ${theme.theme}`}>
+            <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
                 <div className="container d-flex justify-content-between">
                     <div className="contact-info d-flex align-items-center">
                         <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
@@ -51,7 +57,9 @@ function Header(props) {
                             </StyledBadge>
                         </IconButton>
                     </Link>
-                        {/* <a href="#"><i/><FavoriteBorderIcon/></a> */}
+                       
+                       <button onClick={() => theme.toogleTheme(theme.theme)}>{theme.theme === 'light' ? 'dark' : 'light'}</button>
+
                         <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
                         <a href="#" className="facebook"><i className="bi bi-facebook" /></a>
                         <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
@@ -59,7 +67,7 @@ function Header(props) {
                     </div>
                 </div>
             </div>
-            <header id="header" className="fixed-top">
+            <header id="header" className={`fixed-top ${theme.theme}`}>
                 <div className="container d-flex align-items-center">
                     <div className="logo">
                         <a href="index.html">
@@ -67,8 +75,9 @@ function Header(props) {
                             <h2 className="logo-tiny-text me-auto">Multispeciality Hospital</h2>
                         </a>
                     </div>
-                    <nav id="navbar" className="navbar order-last order-lg-0">
+                    <nav id="navbar" className={`navbar order-last order-lg-0  ${theme.theme}`}>
                         <ul>
+                            
                             <li><Link className="nav-link scrollto active" to={"/"} >Home</Link></li>
                             <li><Link className="nav-link scrollto" to={"/Departments"} >Departments</Link></li>
                             <li><Link className="nav-link scrollto" to={"/Doctors"} >Doctors</Link></li>
@@ -76,10 +85,11 @@ function Header(props) {
                             <li><Link className="nav-link scrollto" to={"/Contact"}>Contact</Link></li>
                             <li><Link className="nav-link scrollto" to={"/mediciandisplay"}>medicine</Link></li>
                             <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li>
+                            {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                   <Link to={"/newmedicine"}>Newmedicine</Link>
+                   <Link to={"/newmedicine"}>1medicine</Link>
                     <Link to="/cart">
                         <IconButton aria-label="cart">
                             <StyledBadge badgeContent={countCart} color="secondary">

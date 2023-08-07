@@ -4,13 +4,14 @@ import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./Routes/PrivateRoute";
 import { Provider } from "react-redux/es";
 import { configureStore } from "./userside/redux/Store";
+import { ThemeProvider } from "./ConText/ThemeProvider";
 // import { Provider } from "react-redux";
 // import Counter from "./userside/Containar/counter/Counter";
 // import { configureStore } from "./userside/redux/Store";
 // import Home from "./userside/Containar/Home";
 
 function App() {
-  const store = configureStore ();
+  const store = configureStore();
 
   return (
 
@@ -19,16 +20,14 @@ function App() {
     //   <Route exact path='/' element={<Home />} />
     // </Routes>
     <Provider store={store}>
-
-
-      <Routes>
-        <Route path='/*' element={<User />} />
-        <Route element={<PrivateRoute />}>
-          <Route path='/admin/*' element={<Admin />} />
-        </Route>
-
-      </Routes >
-
+      <ThemeProvider>
+        <Routes>
+          <Route path='/*' element={<User />} />
+          <Route element={<PrivateRoute />}>
+            <Route path='/admin/*' element={<Admin />} />
+          </Route>
+        </Routes >
+      </ThemeProvider>
     </Provider>
 
   );
