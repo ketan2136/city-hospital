@@ -18,7 +18,6 @@ import Mediciandata from '../userside/Containar/Medician/Mediciandata';
 import PrivateRoute from './PrivateRoute';
 import Counter from '../userside/Containar/counter/Counter';
 import { Provider } from 'react-redux';
-import { configureStore } from '../userside/redux/Store';
 import Cart from '../userside/Containar/cart/Cart';
 import FevoriteCart from '../userside/Containar/fevorite/FevoriteCart';
 import Cart1 from '../userside/Containar/Cart1/Cart1';
@@ -28,10 +27,8 @@ import NewMedicine from '../userside/Containar/new_medicine/NewMedicine';
 
 
 function User(props) {
-    const store = configureStore();
     return (
         <>
-            <Provider store={store}>
                 <Header />
 
 
@@ -80,7 +77,6 @@ function User(props) {
 
                 </Routes>
                 <Footer />
-            </Provider>
         </>
     );
 }

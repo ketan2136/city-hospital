@@ -15,11 +15,12 @@ export const BaseButton = Styled.button`
 `;
 
 export const PrimaryButton = styled(BaseButton)`
-    background: ${props => props.disabled = true ? 'grey' : '#FF6337'};
+    // background: ${props => props.disabled = true ? 'grey' : '#FF6337'};
     color: #fff;
+    background: red;
 
      &:hover {
-         background:  ${props => props.disabled = true ? 'grey' : '#blue'};
+         background:  ${props => props.disabled = true ? 'black' : '#blue'};
      }
 `;
 

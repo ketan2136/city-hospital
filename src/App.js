@@ -3,9 +3,9 @@ import Admin from "./Routes/Admin";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./Routes/PrivateRoute";
 import { Provider } from "react-redux/es";
-import {  persistor, store } from "./userside/redux/Store";
 import { ThemeProvider } from "./ConText/ThemeProvider";
 import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./userside/redux/Store";
 // import { PersistGate } from 'redux-persist/es/integration/react'
 // import { Provider } from "react-redux";
 // import Counter from "./userside/Containar/counter/Counter";

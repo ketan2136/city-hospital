@@ -7,9 +7,11 @@ import { fevoriteReducer } from "./fevorite.reducer";
 import  counterReducer  from "../slice/CounterSlice";
 import  cartReducer  from "../slice/CartSlice";
 import  depadepartmentReducer  from "../slice/DepartmentSlice";
+import { authReducer } from "./auth.reducher";
 
 
 export const rootReducer = combineReducers({
+    auth: authReducer,
     counter : counterReducer,
     doctors: doctorReducer,
     medicines: medicineReducher,

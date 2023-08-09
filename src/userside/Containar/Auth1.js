@@ -6,7 +6,7 @@ import Buttan from '../Components/UL/Button/Button';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../fireBase';
 import { useDispatch } from 'react-redux';
-import { singupRequest } from '../redux/action/auth.action';
+import { forgotRequest, loginRequest, singupRequest } from '../redux/action/auth.action';
 
 function Auth1({ btn }) {
     const [authtype, setauthtype] = useState('login');
@@ -49,50 +49,19 @@ function Auth1({ btn }) {
     let authschema = yup.object(authobj);
 
     const handlelogin = (values) => {
-
-        signInWithEmailAndPassword(auth, values.email, values.phone)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                if (user.emailVerified) {
-                    console.log('login sucsecfuly');
-                    localStorage.setItem("loginstatus", 'true');
-                    navigate('/')
-                } else {
-                    console.log('noo');
-                }
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-            });
-
-
+        dispatch(loginRequest(values))
         // localStorage.setItem("loginstatus", 'true');
         // navigate('/')
     };
 
     const handlesignup = (values) => {
-        console.log(values);
-
+        console.log("dddddddd", values);
         dispatch(singupRequest(values));
-       
     }
 
     const handleforgot = (values) => {
         console.log(values);
-
-        sendPasswordResetEmail(auth, values.email)
-            .then(() => {
-                // Password reset email sent!
-                // ..
-                console.log('send email');
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
-            });
+        dispatch(forgotRequest(values));
     }
 
     const formik = useFormik({

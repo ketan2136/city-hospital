@@ -22,8 +22,6 @@ function Header(props) {
 
     let theme = useContext(ThemeContext);
 
-    console.log(theme);
-
     let localData = localStorage.getItem("loginstatus");
 
     let cartData = useSelector((state) => state.card);
@@ -33,10 +31,7 @@ function Header(props) {
     if (countCart.item) {
         countCart = cartData.item.reduce((acc, v, i) => acc + v.qty, 0);
     }
-
-  
-    console.log(cartData);
-
+    
     const handlelogout = () => {
         localStorage.removeItem("loginstatus")
     }

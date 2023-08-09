@@ -17,25 +17,21 @@ import Department from '../admin/components/container/department/Department';
 
 
 function Admin(props) {
-  let store = configureStore()
   return (
-
-    <Provider store={store}>
-      <Muidrower>
-        <Routes>
-          <Route >
-            <Route path='/' element={<Desboard />} />
-          </Route>
-          <Route path='/Doctordrower' element={<Doctor />}></Route>
-          <Route path='/Appoiments' element={<Appoiments />}></Route>
-          <Route path='/Time' element={<Time />}></Route>
-          <Route path='/Login' element={<Login />}></Route>
-          <Route path='/Info' element={<Info />}></Route>
-          <Route path='/medicine' element={<Medicine />}></Route>
-          <Route path='/departmaent' element={<Department />} />
-        </Routes>
-      </Muidrower>
-    </Provider>
+    <Muidrower>
+      <Routes>
+        <Route >
+          <Route path='/' element={<Desboard />} />
+        </Route>
+        <Route path='/Doctordrower' element={<Doctor />}></Route>
+        <Route path='/Appoiments' element={<Appoiments />}></Route>
+        <Route path='/Time' element={<Time />}></Route>
+        <Route path='/Login' element={<Login />}></Route>
+        <Route path='/Info' element={<Info />}></Route>
+        <Route path='/medicine' element={<Medicine />}></Route>
+        <Route path='/departmaent' element={<Department />} />
+      </Routes>
+    </Muidrower>
   );
 }
 

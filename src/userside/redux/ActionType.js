@@ -25,3 +25,5 @@ export const ADD_DESC = "ADD_DESC";
 export const GET_DESC = "ADD_DESC";
 
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const FORGOT_REQUEST = "FORGOT_REQUEST";
