@@ -23,3 +23,5 @@ export const ADD_FEVORITE ="ADD_FEVORITE";
 
 export const ADD_DESC = "ADD_DESC";
 export const GET_DESC = "ADD_DESC";
+
+export const SIGNUP_REQUEST = "SIGNUP_REQUEST";

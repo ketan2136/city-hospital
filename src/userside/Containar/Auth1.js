@@ -3,14 +3,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik, useFormik } from 'formik';
 import Buttan from '../Components/UL/Button/Button';
-// import Input from '../Components/UL/Input/Input';
-import Heading from '../Components/UL/Heading/Heading';
-// import CustimButtan from '../Components/UL/CustomButtan'
-
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../fireBase';
+import { useDispatch } from 'react-redux';
+import { singupRequest } from '../redux/action/auth.action';
 
 function Auth1({ btn }) {
     const [authtype, setauthtype] = useState('login');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     let authobj = {};
     let authval = {};
@@ -47,15 +48,51 @@ function Auth1({ btn }) {
 
     let authschema = yup.object(authobj);
 
-    const handlelogin = () => {
-        localStorage.setItem("loginstatus", 'true');
-        navigate('/')
+    const handlelogin = (values) => {
+
+        signInWithEmailAndPassword(auth, values.email, values.phone)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                if (user.emailVerified) {
+                    console.log('login sucsecfuly');
+                    localStorage.setItem("loginstatus", 'true');
+                    navigate('/')
+                } else {
+                    console.log('noo');
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
+
+
+        // localStorage.setItem("loginstatus", 'true');
+        // navigate('/')
     };
-    const handlesignup = () => {
 
+    const handlesignup = (values) => {
+        console.log(values);
+
+        dispatch(singupRequest(values));
+       
     }
-    const handleforgot = () => {
 
+    const handleforgot = (values) => {
+        console.log(values);
+
+        sendPasswordResetEmail(auth, values.email)
+            .then(() => {
+                // Password reset email sent!
+                // ..
+                console.log('send email');
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
     }
 
     const formik = useFormik({
@@ -64,14 +101,15 @@ function Auth1({ btn }) {
         validationSchema: authschema,
         onSubmit: values => {
             if (authtype === 'login') {
-                handlelogin();
+                handlelogin(values);
             } else if (authtype === 'signup') {
-                handlesignup();
+                handlesignup(values);
             } else if (authtype === 'forgot') {
-                handleforgot();
+                handleforgot(values);
             }
         },
     });
+
 
     const { handleChange, handleBlur, handleSubmit, values, errors, touched } = formik
 
@@ -81,11 +119,11 @@ function Auth1({ btn }) {
         <div className="container">
             <div className="section-title">
                 {
-                        authtype === 'login' ? <h2>Login</h2> :
+                    authtype === 'login' ? <h2>Login</h2> :
                         authtype === 'signup' ? <h2>sign up</h2> : <h2>reset password</h2>
 
-                        // authtype === 'login' ? <Heading type='h2'>Login</Heading> :
-                        // authtype === 'signup' ? <Heading type='h2'>sign up</Heading> : <Heading type='h2'>reset password</Heading>
+                    // authtype === 'login' ? <Heading type='h2'>Login</Heading> :
+                    // authtype === 'signup' ? <Heading type='h2'>sign up</Heading> : <Heading type='h2'>reset password</Heading>
 
 
                 }
@@ -148,7 +186,7 @@ function Auth1({ btn }) {
                     authtype === 'login' ? <div id='login' className="text-center"><Buttan type="primary" >Login</Buttan> </div>
                         :
                         authtype === 'signup' ?
-                            <div id='login' CustimButtan className="text-center"><Buttan type="secondary" btndisabled={true}>Sigh up</Buttan></div>
+                            <div id='login' CustimButtan className="text-center"><Buttan type="secondary">Sigh up</Buttan></div>
                             :
                             <div id='login' className="text-center"><Buttan type="outline">Submit</Buttan></div>
 

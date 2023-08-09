@@ -68,7 +68,7 @@ function User(props) {
 
                     <Route path='/cart' element={<Cart />} />
                     <Route path='/cart1' element={<Cart1 />} />
-                    <Route path='/newmedicine' element={<NewMedicine />}/>
+                    {/* <Route path='/newmedicine' element={<NewMedicine />}/> */}
 
                     <Route path='/fevorite' element={<FevoriteCart />} />
                     {/* <PrivateRouter path='/mediciandisplay' element={<Mediciandata />} /> */}
