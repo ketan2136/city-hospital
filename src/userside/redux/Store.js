@@ -23,7 +23,6 @@ export const configureStore = () => {
 
   let store = createStore(persistedReducer, applyMiddleware(...allMedaleware));
 
-  // sagaMiddleware.run(rootSaga);
   sagaMiddleware.run(rootSaga)
 
   return store;

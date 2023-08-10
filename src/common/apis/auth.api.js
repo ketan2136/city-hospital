@@ -32,7 +32,11 @@ export const singupAPI = (values) => {
 
                 console.log(errorCode);
                 if (errorCode.localeCompare("auth/email-already-in-use") === 0) {
-                    reject('already useing email');
+                    reject({massege:'already useing email'});
+                } else if (errorCode.localeCompare("auth/network-request-failed") === 0) {
+                    reject({massege:"please check your internet connection."});
+                } else if (errorCode.localeCompare("auth/weak-password") === 0) {
+                    reject({massege:"Your password is weak"})
                 }
             });
     })
@@ -49,7 +53,7 @@ export const loginAPI = (values) => {
                     // localStorage.setItem("loginstatus", 'true');
                     // navigate('/')
                 } else {
-                    reject({ massege: 'noo' });
+                    resolve({ massege: 'noo' });
                 }
             })
             .catch((error) => {
@@ -57,7 +61,7 @@ export const loginAPI = (values) => {
                 console.log(errorCode, '5555');
 
                 if (errorCode.localeCompare("auth/wrong-password") === 0) {
-                    reject("wrong password")
+                    reject({massege:"wrong password"})
                 }
             });
     })
@@ -71,14 +75,14 @@ export const forgotAPI = (values) => {
             .then(() => {
                 // Password reset email sent!
                 // ..
-                resolve({massege:'send email'});
+                resolve({ massege: 'send email' });
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 // ..
-                if( errorCode.localeCompare("auth/user-not-found") === 0) {
-                    reject("Not your account ")
+                if (errorCode.localeCompare("auth/user-not-found") === 0) {
+                    reject({massege:"Not your account "})
                 }
             });
     })

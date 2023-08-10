@@ -6,6 +6,8 @@ import { Provider } from "react-redux/es";
 import { ThemeProvider } from "./ConText/ThemeProvider";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./userside/redux/Store";
+import { SnackbarProvider } from "notistack";
+import Alert from "./userside/Components/Alert/Alert";
 // import { PersistGate } from 'redux-persist/es/integration/react'
 // import { Provider } from "react-redux";
 // import Counter from "./userside/Containar/counter/Counter";
@@ -21,19 +23,23 @@ function App() {
     // <Routes>
     //   <Route exact path='/' element={<Home />} />
     // </Routes>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider>
-          <Routes>
-            <Route path='/*' element={<User />} />
-            <Route element={<PrivateRoute />}>
-              <Route path='/admin/*' element={<Admin />} />
-            </Route>
-          </Routes >
-        </ThemeProvider>
-      </PersistGate>
-    </Provider>
 
+    <SnackbarProvider maxSnack={3}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider>
+            <Alert />
+            <Routes>
+              <Route path='/*' element={<User />} />
+              <Route>
+                <Route path='/admin/*' element={<Admin />} />
+              </Route>
+            </Routes >
+
+          </ThemeProvider>
+        </PersistGate>
+      </Provider>
+    </SnackbarProvider>
   );
 
 

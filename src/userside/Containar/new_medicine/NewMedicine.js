@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cardcostom from '../../Components/UL/Cardcostom';
+import { SnackbarProvider, enqueueSnackbar } from 'notistack';
+import { Snackbar } from '@mui/material';
 
 function NewMedicine(props) {
     const [data, setdata] = useState([]);
@@ -44,6 +46,13 @@ function NewMedicine(props) {
                 <div className="section-title">
                     <h2>new cart data</h2>
                 </div>
+
+                <div>
+                    <SnackbarProvider />
+                    <button onClick={() => enqueueSnackbar('That was easy!')}>Show snackbar</button>
+                    <Snackbar message="copy message"/>
+                </div>
+
                 <div className="container">
                     {
 

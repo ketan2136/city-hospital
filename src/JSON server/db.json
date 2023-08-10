@@ -53,6 +53,36 @@
       "name": "type",
       "price": "120",
       "id": 113
+    },
+    {
+      "name": "frut",
+      "price": "120",
+      "id": 114
+    },
+    {
+      "name": "jk",
+      "price": "89",
+      "id": 115
+    },
+    {
+      "name": "8kk",
+      "price": "89",
+      "id": 116
+    },
+    {
+      "name": "ju",
+      "price": "78",
+      "id": 117
+    },
+    {
+      "name": "8kk",
+      "price": "566565",
+      "id": 118
+    },
+    {
+      "name": "ju",
+      "price": "89",
+      "id": 119
     }
   ],
   "medicines": [
@@ -127,6 +157,14 @@
       "desc": "gggggggggggggggg",
       "expiry": "2023-08-05",
       "id": 13
+    },
+    {
+      "name": "ketan",
+      "date": "",
+      "price": "565",
+      "desc": "sfsdf",
+      "expiry": "2023-09-02",
+      "id": 14
     }
   ],
   "department": [

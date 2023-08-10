@@ -84,7 +84,7 @@ function Header(props) {
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                   {/* <Link to={"/newmedicine"}>1medicine</Link> */}
+                   <Link to={"/newmedicine"}>1medicine</Link>
                     <Link to="/cart">
                         <IconButton aria-label="cart">
                             <StyledBadge badgeContent={countCart} color="secondary">

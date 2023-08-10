@@ -1,17 +1,19 @@
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import * as ActionTypes from '../ActionType'
 import { forgotAPI, loginAPI, singupAPI } from '../../../common/apis/auth.api'
+import { setAlert } from '../slice/alertSlice';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* signupSaga(action) {
     console.log("33333");
     try {
         const user = yield call(singupAPI, action.payload);
-        
+        yield put(setAlert({text: user.massege, color:'success'}))
         console.log(user);
         // yield put({ type: 'USER_FETCH_SUCCEEDED', user: user })
     } catch (e) {
         console.log(e);
+        yield put(setAlert({text: e.massege, color:'error'}))
         // yield put({ type: 'USER_FETCH_FAILED', message: e.message })
     }
 }
@@ -19,11 +21,12 @@ function* signupSaga(action) {
 function* loginSaga(action) {
     try {
         const user = yield call(loginAPI, action.payload);
-        
+        yield put(setAlert({text: user.massege, color:'success'}))
         console.log(user);
         // yield put({ type: 'USER_FETCH_SUCCEEDED', user: user })
     } catch (e) {
         console.log(e);
+        yield put(setAlert({text: e.massege, color:'error'}))
         // yield put({ type: 'USER_FETCH_FAILED', message: e.message })
     }
 }
@@ -31,11 +34,12 @@ function* loginSaga(action) {
 function* forgotSaga(action) {
     try {
         const user = yield call(forgotAPI, action.payload);
-        
+        yield put(setAlert({text: user.massege, color:'success'}))
         console.log(user);
         // yield put({ type: 'USER_FETCH_SUCCEEDED', user: user })
     } catch (e) {
         console.log(e);
+        yield put(setAlert({text: e.massege, color:'error'}))
         // yield put({ type: 'USER_FETCH_FAILED', message: e.message })
     }
 }
