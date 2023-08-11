@@ -37,7 +37,10 @@ export const deleteMedicineData = (id) => (dispatch) => {
         fetch("http://localhost:3004/medicines/" + id, {
             method: "DELETE"
         })
-            .then(dispatch({ type: ActionTypes.DELETE_MEDICINE, payload: id }))
+            .then(
+                dispatch(setAlert({text: 'Delete Data', color: 'error'})),
+                dispatch({ type: ActionTypes.DELETE_MEDICINE, payload: id }))
+
             .catch((error) => console.log(error))
 
     } catch (error) {
@@ -54,7 +57,9 @@ export const updateMedicineData = (data) => (dispatch) => {
             },
             body: JSON.stringify(data)
         })
-            .then(dispatch({ type: ActionTypes.UPDATE_MEDICINE, payload: data }))
+            .then(
+                dispatch(setAlert({text: 'updet Data', color: 'success'})),
+                dispatch({ type: ActionTypes.UPDATE_MEDICINE, payload: data }))
             .catch((error) => console.log(error))
     } catch (error) {
         console.log(error);

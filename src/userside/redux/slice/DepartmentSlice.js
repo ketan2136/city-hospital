@@ -7,6 +7,7 @@ const initialState ={
     error:null
 }
 
+
 export const FetchDepartment = createAsyncThunk(
     'department/fetch',
     async () => {
@@ -29,6 +30,7 @@ export const Deletedepartmentdata = createAsyncThunk(
 export const Adddepartmentdata=createAsyncThunk(
     'department/add',
     async (data) => {
+
         let response = await postdepartmentdata(data);
         console.log(response);
         return response.data

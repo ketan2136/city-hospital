@@ -1,6 +1,7 @@
 //2
 import { addDoctorApi, deleteDoctorApi, getDoctoApi, putDoctorApi } from '../../../common/apis/doctors.api';
 import * as ActionTypes from '../ActionType'
+import { setAlert } from '../slice/alertSlice';
 
 //--------------------------------------Doctors--------------------------------------------//
 
@@ -36,7 +37,11 @@ export const getDoctorData = () => (dispatch) => {
 export const addDoctorData = (data) => (dispatch) => {
     try {
         addDoctorApi(data)
-            .then((response) => dispatch({ type: ActionTypes.ADD_DOCTORS, payload: response.data }))
+            .then((response) => {            
+            dispatch(setAlert({text: 'Add Data', color: 'success'}))
+            dispatch( { type: ActionTypes.ADD_DOCTORS, payload: response.data })
+        } )
+        
             .catch((error) => dispatch(errorData(error.message)))
 
         // fetch("http://localhost:3004/doctor", {
@@ -58,7 +63,9 @@ export const deleteDoctorData = (id) => (dispatch) => {
     try {
 
         deleteDoctorApi(id)
-            .then(dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id }))
+            .then(
+                dispatch(setAlert({text: 'delet Data', color: 'error'})),
+                dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id }))
             .catch((error) => console.log(error))
         // fetch("http://localhost:3004/doctor" + id, {
         //     method: "DELETE"
@@ -73,7 +80,9 @@ export const deleteDoctorData = (id) => (dispatch) => {
 export const updateDoctorData = (data) => (dispatch) => {
     try {
         putDoctorApi(data)
-            .then(dispatch({ type: ActionTypes.UPDATE_DOCTORS, payload: data }))
+            .then(
+                dispatch(setAlert({text: 'update Data', color: 'success'})),
+                dispatch({ type: ActionTypes.UPDATE_DOCTORS, payload: data }))
             .catch((error) => console.log(error))
 
         // fetch("http://localhost:3004/Doctor/" + data.id, {

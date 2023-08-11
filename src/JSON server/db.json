@@ -83,6 +83,21 @@
       "name": "ju",
       "price": "89",
       "id": 119
+    },
+    {
+      "name": "kjhh",
+      "price": "+9396",
+      "id": 120
+    },
+    {
+      "name": "ketan",
+      "price": "6535635",
+      "id": 121
+    },
+    {
+      "name": "frut",
+      "price": "890",
+      "id": 122
     }
   ],
   "medicines": [
@@ -143,28 +158,12 @@
       "desc": "Orlistat, sold under the brand name Xenical among others, is a medication used to treat obesity. Its primary function is preventing the absorption of fats from the human diet by acting as a lipase inhibitor, thereby reducing caloric intake."
     },
     {
-      "name": "8",
+      "name": "forgot",
       "date": "",
-      "price": "511111",
-      "desc": "fdgfg",
-      "expiry": "2023-08-02",
-      "id": 12
-    },
-    {
-      "name": "car",
-      "date": "",
-      "price": "120",
-      "desc": "gggggggggggggggg",
-      "expiry": "2023-08-05",
-      "id": 13
-    },
-    {
-      "name": "ketan",
-      "date": "",
-      "price": "565",
-      "desc": "sfsdf",
+      "price": "780",
+      "desc": "detlws vraty bcc",
       "expiry": "2023-09-02",
-      "id": 14
+      "id": 9
     }
   ],
   "department": [
@@ -207,6 +206,26 @@
       "name": "keet",
       "desc": "leptop is wriid isahd aisi",
       "id": 8
+    },
+    {
+      "name": "fdfgd",
+      "desc": "jdhj dhfkjds jskljflkf kjalkfalak",
+      "id": 9
+    },
+    {
+      "name": "kjhh",
+      "desc": "dsfsdfs",
+      "id": 10
+    },
+    {
+      "name": "rtyhy",
+      "desc": "uiti",
+      "id": 11
+    },
+    {
+      "name": "dsd",
+      "desc": "fsdfsdfsdf",
+      "id": 12
     }
   ]
 }
