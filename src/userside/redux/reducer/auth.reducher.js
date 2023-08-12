@@ -6,14 +6,49 @@ const initState = {
     error: null
 }
 
-export const authReducer = (state=initState, action) => {
+export const authReducer = (state = initState, action) => {
     switch (action.type) {
 
         case ActionTypes.SIGNUP_REQUEST:
+        case ActionTypes.LOGIN_REQUEST:
             return {
-                ...state
+                user: null,
+                isLoading: true,
+                error: null
             }
 
+        case ActionTypes.EMAIL_VERIFICATION:
+            return {
+                user: null,
+                isLoading: false,
+                error: null
+            }
+
+        case ActionTypes.AUTH_ERROR:
+            return {
+                user: null,
+                isLoading: false,
+                error: action.payload
+            }
+
+        case ActionTypes.LOGGED_IN:
+            return {
+                user: action.payload,
+                isLoading: false,
+                error: null
+            }
+            case ActionTypes.FORGOT_REQUEST:
+                return {
+                    user: null,
+                    isLoading: false,
+                    error: null
+                }
+        case ActionTypes.LOGOUT:
+            return{
+                user: null,
+                isLoading: false,
+                error: null,
+            }
         default:
             return state
     }

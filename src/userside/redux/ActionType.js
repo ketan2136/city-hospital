@@ -25,5 +25,9 @@ export const ADD_DESC = "ADD_DESC";
 export const GET_DESC = "ADD_DESC";
 
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST";
+export const EMAIL_VERIFICATION = "EMAIL_VERIFICATION";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGGED_IN = "LOGGED_IN";
 export const FORGOT_REQUEST = "FORGOT_REQUEST";
+export const LOGOUT = "LOGOUT";
+export const AUTH_ERROR = "AUTH_ERROR";

@@ -28,14 +28,15 @@ function App() {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ThemeProvider>
-            <Alert />
-            <Routes>
-              <Route path='/*' element={<User />} />
-              <Route>
-                <Route path='/admin/*' element={<Admin />} />
-              </Route>
-            </Routes >
-
+            <div>
+              <Alert />
+              <Routes>
+                <Route path='/*' element={<User />} />
+                <Route>
+                  <Route path='/admin/*' element={<Admin />} />
+                </Route>
+              </Routes >
+            </div>
           </ThemeProvider>
         </PersistGate>
       </Provider>

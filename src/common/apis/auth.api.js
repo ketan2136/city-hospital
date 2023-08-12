@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from "../../fireBase";
 
 export const singupAPI = (values) => {
@@ -49,11 +49,11 @@ export const loginAPI = (values) => {
                 // Signed in 
                 const user = userCredential.user;
                 if (user.emailVerified) {
-                    resolve({ massege: 'login sucsecfuly' });
+                    resolve({ massege: 'login sucsecfuly' , user: user});
                     // localStorage.setItem("loginstatus", 'true');
                     // navigate('/')
                 } else {
-                    resolve({ massege: 'noo' });
+                    resolve({ massege: 'your email is not verification' });
                 }
             })
             .catch((error) => {
@@ -88,4 +88,12 @@ export const forgotAPI = (values) => {
     })
 
 
+}
+
+export const logoutAPI = (values) => {
+    signOut(auth).then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
 }

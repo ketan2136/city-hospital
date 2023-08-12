@@ -280,26 +280,28 @@
 
 // export default Home;
 
+import React, { useContext } from 'react';
 
-import React from 'react';
+import { ThemeContext } from '../../ConText/ThemeProvider';
 
 function Home(props) {
+    let theme = useContext(ThemeContext)
     return (
 
 
         <div>
-            <section id="hero" className="d-flex align-items-center">
+            <section id="hero" className={`d-flex align-items-center `}>
                 <div className="container">
                     <h1>Welcome to City <br />Multispeciality Hospital</h1>
                     <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
                 </div>
             </section>
-            <main id="main">
+            <main id="main" >
                 <section id="why-us" className="why-us">
                 </section>
                 <section id="counts" className="counts">
                     <div className="container">
-                        <div className="row">
+                        <div className={`row  ${theme.theme}`}>
                             <div className="col-lg-3 col-md-6">
                                 <div className="count-box">
                                     <i className="fas fa-user-md" />

@@ -73,7 +73,7 @@ function Header(props) {
                     <nav id="navbar" className={`navbar order-last order-lg-0  ${theme.theme}`}>
                         <ul>
                             
-                            <li><Link className="nav-link scrollto active" to={"/"} >Home</Link></li>
+                            <li><Link className="nav-link scrollto active" to={"/"}>Home</Link></li>
                             <li><Link className="nav-link scrollto" to={"/Departments"} >Departments</Link></li>
                             <li><Link className="nav-link scrollto" to={"/Doctors"} >Doctors</Link></li>
                             <li><Link className="nav-link scrollto" to={"/about"}>About</Link></li>
