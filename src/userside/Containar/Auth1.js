@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { Formik, useFormik } from 'formik';
 import Buttan from '../Components/UL/Button/Button';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../fireBase';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotRequest, loginRequest, singupRequest } from '../redux/action/auth.action';
 import { CircularProgress } from '@mui/material';
@@ -15,7 +15,6 @@ function Auth1({ btn }) {
     const dispatch = useDispatch();
 
     const auth = useSelector(state => state.auth);
-
     console.log(auth);
 
     let authobj = {};
@@ -54,7 +53,12 @@ function Auth1({ btn }) {
     let authschema = yup.object(authobj);
 
     const handlelogin = (values) => {
-        dispatch(loginRequest(values))
+        dispatch(loginRequest({
+            data: values,
+            callBack: (route) => {
+                navigate(route);
+            }
+        }))
         // localStorage.setItem("loginstatus", 'true');
         // navigate('/')
     };
@@ -91,108 +95,94 @@ function Auth1({ btn }) {
 
 
     return (
-
-        <div className="container">
-            <div className="section-title">
-                {
-                    authtype === 'login' ? <h2>Login</h2> :
-                        authtype === 'signup' ? <h2>sign up</h2> : <h2>reset password</h2>
-
-                    // authtype === 'login' ? <Heading type='h2'>Login</Heading> :
-                    // authtype === 'signup' ? <Heading type='h2'>sign up</Heading> : <Heading type='h2'>reset password</Heading>
-
-
-                }
-
-                <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
-                    blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
-                    Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>
-            </div>
-
-            {
-                auth.isLoading ? <CircularProgress color="secondary" className='circulAuth'/> :  
-            <>
-
-                <form onSubmit={handleSubmit} className="row justify-content-center" >
-                    {
-                        authtype === 'login' || authtype === 'forgot' ?
-
-                            null :
-                            <div className="col-md-7 form-group">
-                                <input type="text" name="name" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
-                                    value={values.name}
-                                    onBlur={handleBlur}
-                                    erroetext={errors.name && touched.name ? errors.name : ''}
-                                />
-                                <div className="validate" />
-                                {/* <span className='errors'>{errors.name && touched.name ? errors.name : ''}</span> */}
-
-                            </div>
-
-                    }
-
-                    <div className="col-md-7 form-group mt-3 mt-md-0">
-                        <input type="email" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" onChange={handleChange}
-                            value={values.email}
-                            onBlur={handleBlur}
-                            erroetext={errors.email && touched.email ? errors.email : ''}
-                        />
-                        <div className="validate" />
-
-
+        <div>
+            <section id="appointment" className="appointment">
+                <div className="container">
+                    <div className="section-title">
+                        {
+                            authtype === 'login' ? <h2>Login</h2> :
+                                authtype === 'signup' ? <h2>sign up</h2> : <h2>reset password</h2>
+                        }
+                        <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
+                            blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
+                            Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>
                     </div>
 
                     {
-                        authtype === 'forgot' ? null :
-                            <div className="col-md-7 form-group mt-3 mt-md-0">
-                                <input type="password" name="phone" id="phone" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
-                                    value={values.phone}
-                                    onBlur={handleBlur}
-                                    erroetext={errors.phone && touched.phone ? errors.phone : ''}
-                                />
-                                <div className="validate" />
-                                {/* <span className='errors'>{errors.phone && touched.phone ? errors.phone : ''}</span> */}
+                        auth.isLoading ? <CircularProgress color="secondary" className='circulAuth' /> :
+                            <>
+
+                                <form onSubmit={handleSubmit} className="row justify-content-center php-email-form" >
+                                    {
+                                        authtype === 'login' || authtype === 'forgot' ?
+
+                                            null :
+                                            <div className="col-md-7 form-group">
+                                                <input type="text" name="name" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
+                                                    value={values.name}
+                                                    onBlur={handleBlur}
+                                                    erroetext={errors.name && touched.name ? errors.name : ''}
+                                                />
+                                                <div className="validate" />
+                                                {/* <span className='errors'>{errors.name && touched.name ? errors.name : ''}</span> */}
+
+                                            </div>
+
+                                    }
+
+                                    <div className="col-md-7 form-group mt-3 mt-md-0">
+                                        <input type="email" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" onChange={handleChange}
+                                            value={values.email}
+                                            onBlur={handleBlur}
+                                            erroetext={errors.email && touched.email ? errors.email : ''}
+                                        />
+                                        <div className="validate" />
 
 
-                            </div>
+                                    </div>
 
+                                    {
+                                        authtype === 'forgot' ? null :
+                                            <div className="col-md-7 form-group mt-3 mt-md-0">
+                                                <input type="password" name="phone" id="phone" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" onChange={handleChange}
+                                                    value={values.phone}
+                                                    onBlur={handleBlur}
+                                                    erroetext={errors.phone && touched.phone ? errors.phone : ''}
+                                                />
+                                                <div className="validate" />
+                                            </div>
+
+                                    }
+
+
+
+                                    {
+                                        authtype === 'login' ? <div id='login' className="text-center"><Buttan type="primary" >Login</Buttan> </div>
+                                            :
+                                            authtype === 'signup' ?
+                                                <div id='login' CustimButtan className="text-center"><Buttan type="secondary">Sigh up</Buttan></div>
+                                                :
+                                                <div id='login' className="text-center"><Buttan type="outline">Submit</Buttan></div>
+
+                                    }
+                                </form>
+
+                                {
+                                    authtype === 'login' ?
+                                        <>
+                                            <span className="login2"><a href='#' onClick={() => setauthtype('forgot')}>forgot password ?</a></span>
+                                            <span className="login1">you have alredy account <a href="#" onClick={() => setauthtype('signup')}>signup</a></span>
+                                        </>
+                                        :
+                                        <span className="login1">creat new account <a href="#" onClick={() => setauthtype('login')}>login</a></span>
+                                }
+
+                            </>
                     }
 
 
-
-                    {
-                        authtype === 'login' ? <div id='login' className="text-center"><Buttan type="primary" >Login</Buttan> </div>
-                            :
-                            authtype === 'signup' ?
-                                <div id='login' CustimButtan className="text-center"><Buttan type="secondary">Sigh up</Buttan></div>
-                                :
-                                <div id='login' className="text-center"><Buttan type="outline">Submit</Buttan></div>
-
-                    }
-                    {/* {
-                    
-                     authtype === 'signup' ? null :
-                            <span className="login2"><a href='#'>forgot password ?</a></span>
-
-                           
-                } */}
-
-                </form>
-
-                {
-                    authtype === 'login' ?
-                        <>
-                            <span className="login2"><a href='#' onClick={() => setauthtype('forgot')}>forgot password ?</a></span>
-                            <span className="login1">you have alredy account <a href="#" onClick={() => setauthtype('signup')}>signup</a></span>
-                        </>
-                        :
-                        <span className="login1">creat new account <a href="#" onClick={() => setauthtype('login')}>login</a></span>
-                }
-
-            </>
-                }
-
-
+                </div>
+            </section>
         </div>
     );
 }

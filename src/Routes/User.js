@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from "../userside/Components/Header";
 import Footer from "../userside/Components/Footer";
 import { Route, Routes, Link } from 'react-router-dom';
@@ -23,17 +23,17 @@ import FevoriteCart from '../userside/Containar/fevorite/FevoriteCart';
 import Cart1 from '../userside/Containar/Cart1/Cart1';
 
 import NewMedicine from '../userside/Containar/new_medicine/NewMedicine';
+import { ThemeContext } from '../ConText/ThemeProvider';
 
 
 
 function User(props) {
+    
+    let theme = useContext(ThemeContext);
+
     return (
-        <>
+        <div className={`${theme.theme}`}>
                 <Header />
-
-
-
-                {/* <Exam /> */}
                 <Routes>
                     <Route path='/counter' element={<Counter />} />
                     <Route exact path='/' element={<Home />} />
@@ -73,12 +73,9 @@ function User(props) {
 
 
                     {/* <Route path='/auth' element={<Auth />}></Route>  */}
-
-
-
                 </Routes>
                 <Footer />
-        </>
+        </div>
     );
 }
 

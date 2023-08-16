@@ -10,7 +10,7 @@ import { rootSaga } from '../redux/saga/rootSaga'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['midicine', 'cart']
+  whitelist: ['midicine', 'cart', 'auth']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

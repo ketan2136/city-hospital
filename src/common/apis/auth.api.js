@@ -32,11 +32,11 @@ export const singupAPI = (values) => {
 
                 console.log(errorCode);
                 if (errorCode.localeCompare("auth/email-already-in-use") === 0) {
-                    reject({massege:'already useing email'});
+                    reject({ massege: 'already useing email' });
                 } else if (errorCode.localeCompare("auth/network-request-failed") === 0) {
-                    reject({massege:"please check your internet connection."});
+                    reject({ massege: "please check your internet connection." });
                 } else if (errorCode.localeCompare("auth/weak-password") === 0) {
-                    reject({massege:"Your password is weak"})
+                    reject({ massege: "Your password is weak" })
                 }
             });
     })
@@ -49,7 +49,7 @@ export const loginAPI = (values) => {
                 // Signed in 
                 const user = userCredential.user;
                 if (user.emailVerified) {
-                    resolve({ massege: 'login sucsecfuly' , user: user});
+                    resolve({ massege: 'login sucsecfuly', user: user });
                     // localStorage.setItem("loginstatus", 'true');
                     // navigate('/')
                 } else {
@@ -61,7 +61,7 @@ export const loginAPI = (values) => {
                 console.log(errorCode, '5555');
 
                 if (errorCode.localeCompare("auth/wrong-password") === 0) {
-                    reject({massege:"wrong password"})
+                    reject({ massege: "wrong password" })
                 }
             });
     })
@@ -82,7 +82,7 @@ export const forgotAPI = (values) => {
                 const errorMessage = error.message;
                 // ..
                 if (errorCode.localeCompare("auth/user-not-found") === 0) {
-                    reject({massege:"Not your account "})
+                    reject({ massege: "Not your account " })
                 }
             });
     })
@@ -90,10 +90,12 @@ export const forgotAPI = (values) => {
 
 }
 
-export const logoutAPI = (values) => {
-    signOut(auth).then(() => {
-        // Sign-out successful.
-      }).catch((error) => {
-        // An error happened.
-      });
+export const logoutAPI = () => {
+    return new Promise((resolve, reject) => {
+        signOut(auth).then(() => {
+            resolve({massege: 'log-out successful.'}) // Sign-out successful.
+        }).catch((error) => {
+            reject({massege: error.errorCode}) // An error happened.
+        });
+    });
 }

@@ -30,9 +30,9 @@ function App() {
           <ThemeProvider>
             <div>
               <Alert />
-              <Routes>
+              <Routes >
                 <Route path='/*' element={<User />} />
-                <Route>
+                <Route element={<PrivateRoute />}>
                   <Route path='/admin/*' element={<Admin />} />
                 </Route>
               </Routes >

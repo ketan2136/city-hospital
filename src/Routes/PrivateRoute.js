@@ -1,12 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
 function PrivateRoute(props) {
 
-    let localData = localStorage.getItem("loginstatus")
+    const auth = useSelector(state => state.auth);
+
+    console.log(auth);
 
     return (
-        localData ? <Outlet /> : <Navigate to={'/Auth1'} replace />
+       
+            auth.user ? <Outlet /> : <Navigate to={'/Auth1'} replace />
+
+     
+
     );
 }
 

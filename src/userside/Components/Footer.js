@@ -7,7 +7,7 @@ function Footer(props) {
                 <div className="me-md-auto text-center text-md-start">
                     <div>
                         <h4>Address</h4>
-                        <p>
+                        <p className='facilitiesppp'>
                             F-505, <br />
                             Inovative Plazza<br />
                             New Delhi, India<br /><br />

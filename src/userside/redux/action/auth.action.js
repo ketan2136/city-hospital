@@ -23,6 +23,9 @@ export const forgotRequest = (data) => (dispatch) => {
     dispatch({type: ActionTypes.FORGOT_REQUEST, payload: data})
 }
 
-export const logout = (data) => (dispatch) => {
-    dispatch({type: ActionTypes.LOGOUT, payload:data})
+export const logout = () => (dispatch) => {
+    dispatch({type: ActionTypes.LOGOUT_REQUEST})
+}
+export const loggedOut = () => (dispatch) => {
+    dispatch({type: ActionTypes.LOGGED_OUT})
 }

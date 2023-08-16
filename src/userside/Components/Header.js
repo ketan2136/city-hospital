@@ -4,10 +4,12 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { ThemeContext } from '../../ConText/ThemeProvider';
 import { dark, light } from '@mui/material/styles/createPalette';
+import { logout } from '../redux/action/auth.action';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -22,6 +24,9 @@ function Header(props) {
 
     let theme = useContext(ThemeContext);
 
+    let auth = useSelector(state => state.auth);
+    let dispatch = useDispatch();
+
     let localData = localStorage.getItem("loginstatus");
 
     let cartData = useSelector((state) => state.card);
@@ -33,32 +38,33 @@ function Header(props) {
     }
     
     const handlelogout = () => {
-        localStorage.removeItem("loginstatus")
+        dispatch(logout());
     }
 
     return (
-        <div className={`main-header  ${theme.theme}`}>
+        <div className={`main-header   ${theme.theme}`}>
             <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
-                <div className="container d-flex justify-content-between">
+                <div className="container d-flex justify-content-between headercolor">
                     <div className="contact-info d-flex align-items-center">
                         <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
                         <i className="bi bi-phone" /> +91 9988776655
                     </div>
                     <div className="d-none d-lg-flex social-links align-items-center">
-                    <Link to={"/fevorite"}>
-                        <IconButton aria-label="cart">
-                            <StyledBadge badgeContent={countCart} color="secondary">
-                                <FavoriteBorderIcon />
-                            </StyledBadge>
-                        </IconButton>
-                    </Link>
+                   
                        
-                       <button onClick={() => theme.toogleTheme(theme.theme)}>{theme.theme === 'light' ? 'dark' : 'light'}</button>
+                       <DarkModeIcon onClick={() => theme.toogleTheme(theme.theme)} />
 
                         <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
                         <a href="#" className="facebook"><i className="bi bi-facebook" /></a>
                         <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
                         <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
+                        <Link to={"/fevorite"}>
+                        <IconButton aria-label="cart">
+                            <StyledBadge badgeContent={countCart} color="secondary">
+                                <FavoriteBorderIcon  className='hartDark'/>
+                            </StyledBadge>
+                        </IconButton>
+                    </Link>
                     </div>
                 </div>
             </div>
@@ -73,38 +79,38 @@ function Header(props) {
                     <nav id="navbar" className={`navbar order-last order-lg-0  ${theme.theme}`}>
                         <ul>
                             
-                            <li><Link className="nav-link scrollto active" to={"/"}>Home</Link></li>
-                            <li><Link className="nav-link scrollto" to={"/Departments"} >Departments</Link></li>
-                            <li><Link className="nav-link scrollto" to={"/Doctors"} >Doctors</Link></li>
-                            <li><Link className="nav-link scrollto" to={"/about"}>About</Link></li>
-                            <li><Link className="nav-link scrollto" to={"/Contact"}>Contact</Link></li>
-                            <li><Link className="nav-link scrollto" to={"/mediciandisplay"}>medicine</Link></li>
+                            <li><Link className={`nav-link scrollto , header1`}  to={"/"}>Home</Link></li>
+                            <li><Link className="nav-link scrollto , header1" to={"/Departments"} >Departments</Link></li>
+                            <li><Link className="nav-link scrollto , header1" to={"/Doctors"} >Doctors</Link></li>
+                            <li><Link className="nav-link scrollto , header1" to={"/about"}>About</Link></li>
+                            <li><Link className="nav-link scrollto , header1" to={"/Contact"}>Contact</Link></li>
+                            <li><Link className="nav-link scrollto , header1" to={"/mediciandisplay"}>medicine</Link></li>
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                   <Link to={"/newmedicine"}>1medicine</Link>
+                   {/* <Link to={"/newmedicine"}>1medicine</Link> */}
                     <Link to="/cart">
                         <IconButton aria-label="cart">
                             <StyledBadge badgeContent={countCart} color="secondary">
-                                <ShoppingCartIcon />
+                                <ShoppingCartIcon className='hartDark'/>
                             </StyledBadge>
                         </IconButton>
                     </Link>
 
-                    <Link to="/cart1">
+                    {/* <Link to="/cart1">
                         <IconButton aria-label="cart">
                             <StyledBadge color="secondary">
                                 <ShoppingCartIcon />
                             </StyledBadge>
                         </IconButton>
-                    </Link>
+                    </Link> */}
 
                     <Link to={'/Appointment'} href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
                         Appointment</Link>
                     {
-                        localData ?
+                        auth.user ?
                             <Link to={'/'} href="#" className="appointment-btn scrollto" onClick={handlelogout}>
                                 <span className="d-none d-md-inline">logout</span>
                             </Link> :
@@ -112,6 +118,7 @@ function Header(props) {
                                 <span className="d-none d-md-inline">Login/ Signup</span>
                             </Link>
                     }
+                    
 
                 </div>
             </header>

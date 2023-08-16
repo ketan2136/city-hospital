@@ -55,7 +55,7 @@ function Contact(props) {
                 </div>
             </div>
             <div className="container">
-                <div className="row mt-5">
+                <div className="row mt-5facilitiesppp">
                     <div className="col-lg-4">
                         <div className="info">
                             <div className="address">

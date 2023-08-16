@@ -29,5 +29,6 @@ export const EMAIL_VERIFICATION = "EMAIL_VERIFICATION";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGGED_IN = "LOGGED_IN";
 export const FORGOT_REQUEST = "FORGOT_REQUEST";
-export const LOGOUT = "LOGOUT";
+export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
+export const LOGGED_OUT = "LOGGED_OUT";
 export const AUTH_ERROR = "AUTH_ERROR";

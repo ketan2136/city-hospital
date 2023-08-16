@@ -2,7 +2,7 @@ import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import * as ActionTypes from '../ActionType'
 import { forgotAPI, loginAPI, logoutAPI, singupAPI } from '../../../common/apis/auth.api'
 import { setAlert } from '../slice/alertSlice';
-import { authError, emailVerification, forgotRequest, loggedIN } from '../action/auth.action';
+import { authError, emailVerification, forgotRequest, loggedIN, loggedOut } from '../action/auth.action';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* signupSaga(action) {
@@ -20,8 +20,10 @@ function* signupSaga(action) {
 
 function* loginSaga(action) {
     try {
-        const user = yield call(loginAPI, action.payload);
+        const user = yield call(loginAPI, action.payload.data);
+        action.payload.callBack("/");
         yield put(loggedIN(user))
+        console.log(user);
         yield put(setAlert({ text: user.massege, color: 'success' }))
     } catch (e) {
         yield put(authError(e.massege));
@@ -43,7 +45,8 @@ function* forgotSaga(action) {
 function* logoutSaga(action) {
     try {
         const user = yield call(logoutAPI, action.payload);
-        console.log(user);
+        yield put(loggedOut());
+        yield put(setAlert({ text: user.massege, color: 'success' }))
     } catch (e) {
         yield put(authError(e.massege));
         yield put(setAlert({ text: e.massege, color: 'error' }))
@@ -61,7 +64,7 @@ function* forgotupWath() {
 }
 
 function* logoutWath() {
-    yield takeLatest(ActionTypes.LOGOUT, logoutSaga)
+    yield takeLatest(ActionTypes.LOGOUT_REQUEST, logoutSaga)
 }
 
 
