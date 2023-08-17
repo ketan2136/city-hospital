@@ -1180,7 +1180,7 @@ section {
 }
 
 .form-control {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   margin-bottom: 20px;
 }
 
@@ -1913,7 +1913,7 @@ section {
 }
 
 .dark #header {
-  box-shadow: 0px 5px 15px rgb(222, 223, 223)
+  box-shadow: 0px 1px 15px rgb(222, 223, 223)
 }
 
 .dark .headerdarkapp {
@@ -1943,4 +1943,11 @@ section {
   transition: 0.3s;
   font-size: 14px;
   display: inline-block;
+}
+
+@media screen and (max-width: 1365px) {
+  .container {
+    border: 5px;
+    max-width: 120rem;
+  }
 }

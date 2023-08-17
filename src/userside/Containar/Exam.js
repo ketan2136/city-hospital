@@ -5,28 +5,28 @@ import * as yup from 'yup'
 function Exam(props) {
 
     let userSchema = yup.object().shape({
-        Fullname :yup.string()
+        Fullname: yup.string()
             .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
-            .test("Fullname","Enter valid name", function(value){
+            .test("Fullname", "Enter valid name", function (value) {
                 let arr = value.split(" ");
 
-                if (arr.length === 3) { 
+                if (arr.length === 3) {
                     return true
                 } else {
                     return false
                 }
-                   
+
             })
             .required(),
         Email: yup.string().email('Invalid email').required("Please enter Email"),
         Password: yup.string().required("Please enter your password")
             .matches(
                 /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$/
-,
+                ,
                 "Password one number and one special case character"
             ),
-        ConfPassword: yup.string().required().test("ConfPassword", "note same", function(val) {
-            if(this.parent.Password === val) {
+        ConfPassword: yup.string().required().test("ConfPassword", "note same", function (val) {
+            if (this.parent.Password === val) {
                 return true
             } else {
                 return false

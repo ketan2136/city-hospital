@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Card from '../../Components/UL/Card/Card';
 
 const doctorData = [
     {
@@ -47,7 +48,7 @@ function Doctor(props) {
                 {
                     // fDatadoctor.map((v, i) => {
                     //     return (
-                            <div className="member d-flex align-items-start">
+                            <Card className="member d-flex align-items-start">
                                 <div className="pic"><img src={fDatadoctor[0].url} className="img-doctor" alt /></div>
                                 <div className="member-info">
                                     <h1> <span>Name :- </span> {fDatadoctor[0].name}</h1>
@@ -60,12 +61,12 @@ function Doctor(props) {
                                         <a href="#"> <i className="ri-linkedin-box-fill" /> </a>
                                     </div>
                                 </div>
-                            </div>
+                            </Card>
                     //     )
                     // })
                 }
             </div>
-           
+
         </section>
     );
 }
