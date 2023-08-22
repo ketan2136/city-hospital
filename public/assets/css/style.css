@@ -1951,3 +1951,11 @@ section {
     max-width: 120rem;
   }
 }
+
+.css-1ujnqem-MuiTabs-root.css-1ujnqem-MuiTabs-root {
+  display: inline-block;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
