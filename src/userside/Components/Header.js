@@ -87,6 +87,8 @@ function Header(props) {
                             <li><Link className="nav-link scrollto , header1" to={"/mediciandisplay"}>medicine</Link></li>
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
+                            <li><Link className="nav-link scrollto" to={"/theme"}>Toogle Theme</Link></li>
+                            <li><Link className="nav-link scrollto" to={"/useref"}>useRef</Link></li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>

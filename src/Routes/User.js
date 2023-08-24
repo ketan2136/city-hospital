@@ -24,6 +24,8 @@ import Cart1 from '../userside/Containar/Cart1/Cart1';
 
 import NewMedicine from '../userside/Containar/new_medicine/NewMedicine';
 import { ThemeContext } from '../ConText/ThemeProvider';
+import UseCallBack from '../userside/Containar/Exampals/CallBack';
+import UseRefExample from '../userside/Containar/Exampals/UseRefExample';
 
 
 
@@ -41,6 +43,8 @@ function User(props) {
 
                     <Route path='/about' element={<About />} />
                     <Route path='/Appointment' element={<Appointment />} />
+                    <Route path='/theme' element={<UseCallBack />} />
+                    <Route path='/useref' element={<UseRefExample />} />
 
                     <Route path='/Contact' element={<Contact />} />
                     <Route path='/Departments' element={<Departments />} />
