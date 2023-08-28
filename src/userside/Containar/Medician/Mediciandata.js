@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { getMedicineData } from '../../redux/action/medicine.action';
 import { useDispatch, useSelector } from 'react-redux';
 import Listmedician from './Listmedician'
 import { addToCart } from '../../redux/slice/CartSlice';
 import { addToFevorite } from '../../redux/action/fevorite.action';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 function Mediciandata(props) {
     const dispatch = useDispatch();
-    const medicines = useSelector(state => state.medicines)
-    // const [fillter, setfillter] = useState('');
+    const [search, setSearch] = useState([]);
+    const medicines = useSelector(state => state.medicines);
+
 
     React.useEffect(() => {
-
         dispatch(getMedicineData())
     }, []);
 
-  
 
     const handlechange = (val) => {
-
-
         let fdata = medicines.medicines.filter((v) =>
             v.name.toLowerCase().includes(val.toLowerCase()) ||
             v.price.toString().includes(val) ||
@@ -30,38 +31,49 @@ function Mediciandata(props) {
         );
         console.log(fdata);
 
-
-
+        setSearch(fdata);
     }
 
     const handlecard = (id) => {
-        dispatch(addToCart({pid : id, qty: 1}))
-        console.log("handle card call"+ id);
+        dispatch(addToCart({ pid: id, qty: 1 }))
+        console.log("handle card call" + id);
     }
 
-    const handleFevorite = (id) => {
+    const handlefav = (id) => {
+        console.log(id);
         dispatch(addToFevorite(id))
-        console.log('handle call fevorite'+id);
     }
 
     return (
         <section id="contact" className="contact">
             <div className="container">
                 <div className="section-title">
-                    <h2>Medician</h2>
-                    {/* <Heading type='h2'> <h2>Medician</h2></Heading> */}
+                    <h2>Medicine</h2>
                     <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
                         blandit quam volutpat sollicitudin. Aenean ac turpis ante. Mauris velit sapien, aliquet aliquet rhoncus quis,
                         luctus at neque. Mauris sit amet massa sed orci vehicula facilisis.</p>
                 </div>
             </div>
             <div className="container" >
-                <input type='search ' name='searce' onChange={(e) => handlechange(e.target.value)}></input>
+                <div className='row justify-content-center mt-3'>
+                    <Input
+                        className='justify-content-center'
+                        style={{ width: '40rem' }}
+                        onChange={(e) => handlechange(e.target.value)}
+                        id="input-with-icon-adornment"
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        }
+                    />
+                </div>
+
                 <div className='row'>
                     <Listmedician
-                        mdata={medicines.medicines ? medicines.medicines : []}
+                        mdata={search.length > 0 ? search : medicines.medicines}
                         hableCard1={handlecard}
-                        handleFevorite1={handleFevorite}
+                        handlefav={handlefav}
                     />
                 </div>
             </div>

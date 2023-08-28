@@ -1,6 +1,7 @@
+import { Card } from '@mui/material';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Card from '../../Components/UL/Card/Card';
+// import { Card } from 'reactstrap';
 
 const doctorData = [
     {
@@ -39,7 +40,6 @@ function Doctor(props) {
     const { id } = useParams()
 
     let fDatadoctor = pDtatdoctor.filter((v) => v.id == id)
-
     console.log(fDatadoctor[0]);
 
     return (

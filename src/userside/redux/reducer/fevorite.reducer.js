@@ -6,15 +6,20 @@ const inistate = {
     error: null
 }
 
-export const fevoriteReducer = () => (state = inistate, action) => {
-
+export const fevoriteReducer = (state = inistate, action) => {
+    console.log(action, state.item);
     switch (action.type) {
         case ActionTypes.ADD_FEVORITE:
-            let item = state.item.some((v) => v.pid === action.payload.pid)
+
+            let item = state.item.find((v) => v.pid === action.payload.pid)
+
+            console.log(item);
+
+            let newfav;
 
             if (item) {
-                let index = state.item.findIndex((v) => v.pid === action.payload.pid);
-                state.item[index].qty++;
+                newfav = state.item.filter((v) => v.pid !== action.payload.pid);
+                state.item = newfav
             } else {
                 state.item.push(action.payload)
             }
@@ -25,7 +30,11 @@ export const fevoriteReducer = () => (state = inistate, action) => {
                 error: null
             };
 
-
+        case ActionTypes.REMOVE_FEVORITE:
+            return {
+                ...state,
+                item: state.item.filter((v) => v.pid !== action.payload)
+            }
 
         default:
             return state;

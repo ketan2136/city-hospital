@@ -11,13 +11,10 @@ import Doctor from "../userside/Containar/Doctor/Doctor";
 import Home from "../userside/Containar/Home";
 import VisitingDoctor from "../userside/Containar/visitingdoctor/VisitingDoctor.js";
 import Notfound from "../userside/Containar/Notfound";
-import Auth from "../userside/Containar/Auth";
 import Auth1 from "../userside/Containar/Auth1";
-import Exam from "../userside/Containar/Exam";
 import Mediciandata from '../userside/Containar/Medician/Mediciandata';
 import PrivateRoute from './PrivateRoute';
 import Counter from '../userside/Containar/counter/Counter';
-import { Provider } from 'react-redux';
 import Cart from '../userside/Containar/cart/Cart';
 import FevoriteCart from '../userside/Containar/fevorite/FevoriteCart';
 import Cart1 from '../userside/Containar/Cart1/Cart1';
@@ -74,9 +71,6 @@ function User(props) {
 
                     <Route path='/fevorite' element={<FevoriteCart />} />
                     {/* <PrivateRouter path='/mediciandisplay' element={<Mediciandata />} /> */}
-
-
-                    {/* <Route path='/auth' element={<Auth />}></Route>  */}
                 </Routes>
                 <Footer />
         </div>

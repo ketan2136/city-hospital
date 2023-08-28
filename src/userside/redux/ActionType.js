@@ -20,6 +20,7 @@ export const DEN_CARD = "DEN_CARD";
 export const REMOVE_CARD = "REMOVE_CART";
 
 export const ADD_FEVORITE ="ADD_FEVORITE";
+export const REMOVE_FEVORITE ="REMOVE_FEVORITE";
 
 export const ADD_DESC = "ADD_DESC";
 export const GET_DESC = "ADD_DESC";

@@ -1,18 +1,19 @@
-
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { removeToFevorite } from '../../redux/action/fevorite.action';
 
 function FevoriteCart(props) {
     let dispatch = useDispatch();
 
     const mData = useSelector((state) => state.medicines);
 
-    const cData = useSelector((state) => state.cart);
+    console.log(mData);
 
-   
+    const favData = useSelector((state) => state.fevorite);
 
-    let cartItems = cData.item.map((v) => {
+    console.log( favData);
+
+    let cartItems = favData.item.map((v) => {
         let medicine = mData.medicines.find((m) => m.id === v.pid);
 
         let fData = { ...medicine, ...v };
@@ -20,11 +21,11 @@ function FevoriteCart(props) {
         return fData;
     })
 
-    console.log(cartItems);
+    
 
 
     const handleRemove = (id) => {
-       console.log(11111);
+        dispatch(removeToFevorite(id))
     }
 
 
@@ -35,15 +36,15 @@ function FevoriteCart(props) {
                     <h2>Fevorite data</h2>
                 </div>
                 {
-                      cartItems.map((c, i) => {
+                    cartItems.map((c, i) => {
                         return (
                             <div className="card mb-3">
                                 <div className="card-body">
                                     <div className="d-flex justify-content-between">
                                         <div className="d-flex flex-row align-items-center">
                                             <div className="ms-3">
-                                                <h5></h5>
-                                                <p className="small mb-0"></p>
+                                                <h5>{c.name}</h5>
+                                                <p className="small mb-0">{c.desc}</p>
                                             </div>
                                         </div>
                                         <div className="d-flex flex-row align-items-center">
@@ -53,14 +54,14 @@ function FevoriteCart(props) {
                                             <div style={{ width: 80 }}>
                                                 <h5 className="mb-0"></h5>
                                             </div>
-                                            <a href="#!" style={{ color: '#cecece' }} ><i className="fas fa-trash-alt" /></a>
+                                            <a href="#!" style={{ color: '#cecece' }} ><i className="fas fa-trash-alt"  onClick={() => handleRemove(c.id)}/></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         )
                     })
-                }  
+                }
             </div>
         </section>
     );

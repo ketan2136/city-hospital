@@ -29,14 +29,31 @@ function Header(props) {
 
     let localData = localStorage.getItem("loginstatus");
 
-    let cartData = useSelector((state) => state.card);
+    
+    // ------------------------------------
+
+    let cartData = useSelector((state) => state.cart);
 
     let countCart = 0;
+    
 
-    if (countCart.item) {
+    if (cartData.item) {
         countCart = cartData.item.reduce((acc, v, i) => acc + v.qty, 0);
     }
+
+    // /-----------------------------------------/
+
+    let favCart = 0;
+
+    const favData = useSelector((state) => state.fevorite);
+
+    if (favData.item) {
+        favCart = favData.item.reduce((acc, v, i) => acc + v.qty, 0);
+    }
+
+    console.log(favData);
     
+
     const handlelogout = () => {
         dispatch(logout());
     }
@@ -60,8 +77,15 @@ function Header(props) {
                         <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
                         <Link to={"/fevorite"}>
                         <IconButton aria-label="cart">
-                            <StyledBadge badgeContent={countCart} color="secondary">
+                            <StyledBadge badgeContent={favCart} color="secondary">
                                 <FavoriteBorderIcon  className='hartDark'/>
+                            </StyledBadge>
+                        </IconButton>
+                    </Link>
+                    <Link to="/cart">
+                        <IconButton aria-label="cart">
+                            <StyledBadge badgeContent={countCart} color="secondary">
+                                <ShoppingCartIcon className='hartDark'/>
                             </StyledBadge>
                         </IconButton>
                     </Link>
@@ -84,22 +108,15 @@ function Header(props) {
                             <li><Link className="nav-link scrollto , header1" to={"/Doctors"} >Doctors</Link></li>
                             <li><Link className="nav-link scrollto , header1" to={"/about"}>About</Link></li>
                             <li><Link className="nav-link scrollto , header1" to={"/Contact"}>Contact</Link></li>
-                            <li><Link className="nav-link scrollto , header1" to={"/mediciandisplay"}>medicine</Link></li>
+                            <li><Link className="nav-link scrollto , header1" to={"/mediciandisplay"}>Medicine</Link></li>
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
-                            <li><Link className="nav-link scrollto" to={"/theme"}>Toogle Theme</Link></li>
-                            <li><Link className="nav-link scrollto" to={"/useref"}>useRef</Link></li>
+                          
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                   {/* <Link to={"/newmedicine"}>1medicine</Link> */}
-                    <Link to="/cart">
-                        <IconButton aria-label="cart">
-                            <StyledBadge badgeContent={countCart} color="secondary">
-                                <ShoppingCartIcon className='hartDark'/>
-                            </StyledBadge>
-                        </IconButton>
-                    </Link>
+               
+                    
 
                     {/* <Link to="/cart1">
                         <IconButton aria-label="cart">

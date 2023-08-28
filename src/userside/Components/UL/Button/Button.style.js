@@ -36,11 +36,11 @@ export const SecondaryButton = styled(BaseButton)`
 
 
 export const OutlineButton = styled(BaseButton)`
-    background: none;
-    color: black;
+    background: red;
+    color: #fff;
     border: 2px solid black;
 
      &:hover {
-         background: blue;
+         background: black;
      }
 `;

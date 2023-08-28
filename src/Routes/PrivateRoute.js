@@ -9,11 +9,7 @@ function PrivateRoute(props) {
     console.log(auth);
 
     return (
-       
             auth.user ? <Outlet /> : <Navigate to={'/Auth1'} replace />
-
-     
-
     );
 }
 
