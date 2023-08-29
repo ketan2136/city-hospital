@@ -48,9 +48,9 @@ function Doctors(props) {
                     {
                         doctorData.map((value) => {
                             return (
-                                <div className="col-lg-6">
+                                <div className="col-lg-6 ">
                                     <Link to={`/doctor/${value.id}`}>
-                                    <div className="member d-flex align-items-start">
+                                    <div className="member d-flex align-items-start doctorShadow">
                                         <div className="pic"><img src={value.url} className="img-doctor" alt /></div>
                                         <div className="member-info">
                                             <h4>{value.name}</h4>

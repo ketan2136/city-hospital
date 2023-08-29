@@ -55,14 +55,15 @@ function Mediciandata(props) {
                 </div>
             </div>
             <div className="container" >
-                <div className='row justify-content-center mt-3'>
+                <div className='row justify-content-center mt-3 '>
                     <Input
-                        className='justify-content-center'
+                        
+                        className='searchIcon'
                         style={{ width: '40rem' }}
                         onChange={(e) => handlechange(e.target.value)}
                         id="input-with-icon-adornment"
                         startAdornment={
-                            <InputAdornment position="start">
+                            <InputAdornment className='searchIcon' position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         }

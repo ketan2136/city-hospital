@@ -9,7 +9,7 @@ function Listmedician({ mdata, hableCard1, handlefav }) {
             {
                 mdata.map((v, i) => {
                     return (
-                        <div className='col-md-4 medicinebuttam g-2'>
+                        <div className='col-md-4 medicinebuttam g-1'>
                             <Cardcostom
                                 value={v}
                                 onclick1={hableCard1}

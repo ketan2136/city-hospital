@@ -23,7 +23,7 @@ function Cardcostom({ value, onclick1, btnval, fevorite, onclick2 }) {
                 }}
             >
 
-                <CardBody>
+                <CardBody className='cardcostom'>
 
                     <CardTitle tag="h5" className='fevoriteIcon'>
                         {value.name}

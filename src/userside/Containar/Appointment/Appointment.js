@@ -117,8 +117,8 @@ function Appointment(props) {
 
 
                 <Tabs value={value} onChange={handleChangeTab} aria-label="icon label tabs example">
-                    <Tab icon={<StyleIcon />} label="Book Appointment" />
-                    <Tab icon={<FormatListBulletedIcon />} label="List Appointment" />
+                    <Tab className='appicon' icon={<StyleIcon />} label="Book Appointment" />
+                    <Tab  className='appicon' icon={<FormatListBulletedIcon />} label="List Appointment" />
                 </Tabs>
 
                 {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -10,6 +10,7 @@ import { ThemeContext } from '../../ConText/ThemeProvider';
 import { dark, light } from '@mui/material/styles/createPalette';
 import { logout } from '../redux/action/auth.action';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { Drawer } from 'rsuite';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -29,13 +30,15 @@ function Header(props) {
 
     let localData = localStorage.getItem("loginstatus");
 
-    
+    const [drower , setDrower] = useState(false);
+
+
     // ------------------------------------
 
     let cartData = useSelector((state) => state.cart);
 
     let countCart = 0;
-    
+
 
     if (cartData.item) {
         countCart = cartData.item.reduce((acc, v, i) => acc + v.qty, 0);
@@ -52,7 +55,7 @@ function Header(props) {
     }
 
     console.log(favData);
-    
+
 
     const handlelogout = () => {
         dispatch(logout());
@@ -63,32 +66,29 @@ function Header(props) {
             <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
                 <div className="container d-flex justify-content-between headercolor">
                     <div className="contact-info d-flex align-items-center">
-                        <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
+                        <i className="bi bi-envelope" /> <a href={`mailto:contact@example.com  ${theme.theme}`}>cityhospital@example.com</a>
                         <i className="bi bi-phone" /> +91 9988776655
                     </div>
-                    <div className="d-none d-lg-flex social-links align-items-center">
-                   
-                       
-                       <DarkModeIcon onClick={() => theme.toogleTheme(theme.theme)} />
-
+                    <div className=" d-lg-flex social-links align-items-center">
+                        <DarkModeIcon onClick={() => theme.toogleTheme(theme.theme)} />
                         <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
                         <a href="#" className="facebook"><i className="bi bi-facebook" /></a>
                         <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
                         <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
                         <Link to={"/fevorite"}>
-                        <IconButton aria-label="cart">
-                            <StyledBadge badgeContent={favCart} color="secondary">
-                                <FavoriteBorderIcon  className='hartDark'/>
-                            </StyledBadge>
-                        </IconButton>
-                    </Link>
-                    <Link to="/cart">
-                        <IconButton aria-label="cart">
-                            <StyledBadge badgeContent={countCart} color="secondary">
-                                <ShoppingCartIcon className='hartDark'/>
-                            </StyledBadge>
-                        </IconButton>
-                    </Link>
+                            <IconButton aria-label="cart">
+                                <StyledBadge badgeContent={favCart} color="secondary">
+                                    <FavoriteBorderIcon className='hartDark' />
+                                </StyledBadge>
+                            </IconButton>
+                        </Link>
+                        <Link to="/cart">
+                            <IconButton aria-label="cart">
+                                <StyledBadge badgeContent={countCart} color="secondary">
+                                    <ShoppingCartIcon className='hartDark' />
+                                </StyledBadge>
+                            </IconButton>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -102,8 +102,7 @@ function Header(props) {
                     </div>
                     <nav id="navbar" className={`navbar order-last order-lg-0  ${theme.theme}`}>
                         <ul>
-                            
-                            <li><Link className={`nav-link scrollto , header1`}  to={"/"}>Home</Link></li>
+                            <li><Link className={`nav-link scrollto , header1`} to={"/"}>Home</Link></li>
                             <li><Link className="nav-link scrollto , header1" to={"/Departments"} >Departments</Link></li>
                             <li><Link className="nav-link scrollto , header1" to={"/Doctors"} >Doctors</Link></li>
                             <li><Link className="nav-link scrollto , header1" to={"/about"}>About</Link></li>
@@ -111,13 +110,9 @@ function Header(props) {
                             <li><Link className="nav-link scrollto , header1" to={"/mediciandisplay"}>Medicine</Link></li>
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
-                          
                         </ul>
-                        <i className="bi bi-list mobile-nav-toggle" />
+                        <i onClick={() => setDrower(true)} className="bi bi-list mobile-nav-toggle" />
                     </nav>
-               
-                    
-
                     {/* <Link to="/cart1">
                         <IconButton aria-label="cart">
                             <StyledBadge color="secondary">
@@ -125,7 +120,6 @@ function Header(props) {
                             </StyledBadge>
                         </IconButton>
                     </Link> */}
-
                     <Link to={'/Appointment'} href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
                         Appointment</Link>
                     {
@@ -137,7 +131,26 @@ function Header(props) {
                                 <span className="d-none d-md-inline">Login/ Signup</span>
                             </Link>
                     }
-                    
+
+                    <div className='drawer'>
+                        <Drawer backdrop={"static"} open={drower} onClose={() => setDrower(false)}>
+                            <Drawer.Header>
+                                <Drawer.Title>Navbar List</Drawer.Title>
+                            </Drawer.Header>
+                            <Drawer.Body>
+                                <nav>
+                                    <ul>
+                                        <li><Link to="/" onClick={() => setDrower(false)}>Home</Link></li>
+                                        <li><Link to="/departments" onClick={() => setDrower(false)}>Departments</Link></li>
+                                        <li><Link to="/doctors" onClick={() => setDrower(false)}>Doctors</Link></li>
+                                        <li><Link to="/about" onClick={() => setDrower(false)}>About</Link></li>
+                                        <li><Link to="/contact" onClick={() => setDrower(false)}>Contact</Link></li>
+                                        <li><Link to="/mediciandisplay" onClick={() => setDrower(false)}>Medicine</Link></li>
+                                    </ul>
+                                </nav>
+                            </Drawer.Body>
+                        </Drawer>
+                    </div>
 
                 </div>
             </header>

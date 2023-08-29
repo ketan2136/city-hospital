@@ -84,15 +84,15 @@ function Cart(props) {
                                         <div className="card-body">
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex flex-row align-items-center">
-                                                    <div className="ms-3">
-                                                        <h5>{c.name}</h5>
+                                                    <div className="ms-3 ">
+                                                        <h5 >{c.name}</h5>
                                                         <p className="small mb-0">{c.desc.substring(0,50)}</p>
                                                     </div>
                                                 </div>
                                                 <div className="d-flex flex-row align-items-center">
                                                     <div style={{ width: 50 }}>
                                                         <Button onClick={() => handleInc(c.pid)}>+</Button>
-                                                        <h5 className="fw-normal mb-0">{c.qty}</h5>
+                                                        <h5 className="fw-normal mb-0 ">{c.qty}</h5>
                                                         <Button onClick={() => handleDnc(c.pid)}>-</Button>
                                                     </div>
                                                     <div style={{ width: 80 }}>

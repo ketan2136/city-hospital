@@ -51,7 +51,7 @@ function Cart(props) {
                                             <div className="d-flex justify-content-between">
                                                 <div className="d-flex flex-row align-items-center">
                                                     <div className="ms-3">
-                                                        <h5>{c.name}</h5>
+                                                        <h5 className='carth5tags'>{c.name}</h5>
                                                         <p className="small mb-0">{c.desc}</p>
                                                     </div>
                                                 </div>

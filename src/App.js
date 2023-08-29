@@ -8,11 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./userside/redux/Store";
 import { SnackbarProvider } from "notistack";
 import Alert from "./userside/Components/Alert/Alert";
-// import { PersistGate } from 'redux-persist/es/integration/react'
-// import { Provider } from "react-redux";
-// import Counter from "./userside/Containar/counter/Counter";
-// import { configureStore } from "./userside/redux/Store";
-// import Home from "./userside/Containar/Home";
+import './rsuite.css'
 
 function App() {
   // const store = configureStore();
