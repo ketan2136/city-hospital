@@ -19,9 +19,7 @@ function Department(props) {
 
 
     useEffect(() => {
-
         Dispatch(FetchDepartment())
-
     }, [])
 
 
@@ -42,7 +40,7 @@ function Department(props) {
             width: 130,
             renderCell: (params) => (
                 <>
-                    <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+                    <IconButton aria-label="delete" onClick={() => handleDelete(params.row)}>
                         <DeleteIcon />
                     </IconButton>
                     <IconButton aria-label="delete" onClick={() => handleUpdate(params.row)}>
@@ -50,10 +48,8 @@ function Department(props) {
                     </IconButton>
 
                 </>
-
             )
         },
-
     ];
     const handleSubmit = (data) => {
         console.log(data);
@@ -65,6 +61,9 @@ function Department(props) {
         }
         setUpdate(null)
     }
+
+    console.log(departments.department);
+    
     return (
         <div >
             <Box height={100} />

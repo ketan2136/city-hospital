@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { object, string  } from 'yup';
+import { object, string } from 'yup';
 import { Formik, useFormik } from 'formik';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -55,7 +55,7 @@ function DepartmentFrom({ onHandlesumit, update }) {
 
     },
   });
-  const { values, handleBlur, handleSubmit, errors, touched, handleChange } = Formik
+  const { values, handleBlur, handleSubmit, errors, touched, handleChange , setFieldValue} = Formik
   return (
     <>
       <h1>Department</h1>
@@ -103,6 +103,19 @@ function DepartmentFrom({ onHandlesumit, update }) {
                 <span className='error' style={{ color: 'red' }}>{errors.desc}</span> : null
             }
 
+            <div className="form-group mt-3">
+              <input
+                type="file"
+                name="file"
+              
+                onChange={(event) => setFieldValue("file", event.target.files[0])}
+
+              />
+
+              {/* <img src={typeof values.file === "string" ? values.file : URL.createObjectURL(values.file)} /> */}
+
+              <span className='error'>{errors.file && touched.file ? errors.file : ''}</span>
+            </div>
 
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
