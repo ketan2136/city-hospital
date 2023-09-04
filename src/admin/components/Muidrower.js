@@ -32,10 +32,10 @@ const drawerWidth = 240;
 
 const Drowerdata = [
   { labal: 'Doctor', to: '/Admin/Doctordrower', icon: <HomeIcon /> },
-  { labal: 'Appoiments', to: '/Admin/Appoiments', icon: <AppsIcon /> },
-  { labal: 'Time', to: '/Admin/Time', icon: <AccessTimeIcon /> },
-  { labal: 'About', to: '/Admin/Info', icon: <InfoIcon /> },
-  { labal: 'Login in / sign up', to: '/Admin/Login', icon: <PersonIcon /> },
+  // { labal: 'Appoiments', to: '/Admin/Appoiments', icon: <AppsIcon /> },
+  // { labal: 'Time', to: '/Admin/Time', icon: <AccessTimeIcon /> },
+  // { labal: 'About', to: '/Admin/Info', icon: <InfoIcon /> },
+  // { labal: 'Login in / sign up', to: '/Admin/Login', icon: <PersonIcon /> },
   { labal: 'medicine', to: '/Admin/medicine', icon: <MedicalServicesIcon /> },
   { labal: 'departmaent', to: '/Admin/departmaent', icon: <LocalFireDepartmentIcon /> },
 ]

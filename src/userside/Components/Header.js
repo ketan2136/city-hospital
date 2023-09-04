@@ -102,12 +102,12 @@ function Header(props) {
                     </div>
                     <nav id="navbar" className={`navbar order-last order-lg-0  ${theme.theme}`}>
                         <ul>
-                            <li><Link className={`nav-link scrollto  ${theme.theme}`} to={"/"}>Home</Link></li>
-                            <li><Link className={`nav-link scrollto  ${theme.theme}`} to={"/Departments"} >Departments</Link></li>
-                            <li><Link className={`nav-link scrollto  ${theme.theme}`} to={"/Doctors"} >Doctors</Link></li>
-                            <li><Link className={`nav-link scrollto  ${theme.theme}`} to={"/about"}>About</Link></li>
-                            <li><Link className={`nav-link scrollto  ${theme.theme}`} to={"/Contact"}>Contact</Link></li>
-                            <li><Link className={`nav-link scrollto  ${theme.theme}`} to={"/mediciandisplay"}>Medicine</Link></li>
+                            <li><Link className={`nav-link scrollto , header1  ${theme.theme}`} to={"/"}>Home</Link></li>
+                            <li><Link className={`nav-link scrollto , header1  ${theme.theme}`} to={"/Departments"} >Departments</Link></li>
+                            <li><Link className={`nav-link scrollto , header1  ${theme.theme}`} to={"/Doctors"} >Doctors</Link></li>
+                            <li><Link className={`nav-link scrollto , header1  ${theme.theme}`} to={"/about"}>About</Link></li>
+                            <li><Link className={`nav-link scrollto , header1  ${theme.theme}`} to={"/Contact"}>Contact</Link></li>
+                            <li><Link className={`nav-link scrollto , header1  ${theme.theme}`} to={"/mediciandisplay"}>Medicine</Link></li>
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                             {/* <li><Link className="nav-link scrollto" to={"/counter"}>counter</Link></li> */}
                         </ul>

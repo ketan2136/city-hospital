@@ -1934,8 +1934,8 @@ section {
 }
 
  .dark .header1:hover {
-  border-bottom: 2px solid #fff;
-  color: #ebf1f6;
+  border-bottom: 2px solid #FF6337;
+  color: #FF6337;
 } 
 
 .light {
@@ -2094,6 +2094,17 @@ section {
 
 .cardcostom {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.dark .cardcostom {
+  background: #000;
+}
+
+.dark .cardcostom p{
+  color: #fff;
+}
+.dark .cardcostom h5{
+  color: #fff;
 }
 
 .dark .doctorShadow {
@@ -2395,3 +2406,6 @@ section {
   font-size: 14px;
   display: inline-block;
 }
+
+
+

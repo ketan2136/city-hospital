@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { getMedicineData } from '../../redux/action/medicine.action';
 import { useDispatch, useSelector } from 'react-redux';
 import Listmedician from './Listmedician'
@@ -8,6 +8,7 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import { ThemeContext } from '../../../ConText/ThemeProvider';
 
 
 function Mediciandata(props) {
@@ -44,6 +45,7 @@ function Mediciandata(props) {
         dispatch(addToFevorite(id))
     }
 
+    let theme = useContext(ThemeContext);
     return (
         <section id="contact" className="contact">
             <div className="container">
@@ -55,9 +57,9 @@ function Mediciandata(props) {
                 </div>
             </div>
             <div className="container" >
-                <div className='row justify-content-center mt-3 '>
+                <div className={`row justify-content-center mt-3 ${theme.theme}`}>         
                     <Input
-                        
+                        placeholder='search medicine'
                         className='searchIcon'
                         style={{ width: '40rem' }}
                         onChange={(e) => handlechange(e.target.value)}

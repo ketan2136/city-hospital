@@ -10,9 +10,9 @@ function Contact(props) {
 
     let userSchema = object({
         name: yup.string().required('please enter name'),
-        email: yup.string().required('please enter name').email('enter vlide email'),
+        email: yup.string().required('please enter email').email('enter vlide email'),
         subject: yup.string().required('please enter subject'),
-        message: yup.string().required('please enter name').test('message', 'maximum 5 word to allowd', function (val) {
+        message: yup.string().required('please enter message').test('message', 'maximum 5 word to allowd', function (val) {
             let arr = val.split(" ");
 
             if (arr.length > 5) {
@@ -20,9 +20,6 @@ function Contact(props) {
             } else {
                 return true;
             }
-
-
-            console.log(arr);
         })
     });
 
@@ -103,8 +100,6 @@ function Contact(props) {
 
                                     />
                                     <span className='errors'>{errors.email && touched.email ? errors.email : ''}</span>
-
-
                                 </div>
                             </div>
                             <div className="form-group mt-3">
@@ -129,10 +124,7 @@ function Contact(props) {
                                     onBlur={handleBlur}
 
                                 />
-
                                 <span className='errors'>{errors.message && touched.message ? errors.message : ''}</span>
-
-
                             </div>
                             <div className="my-3">
                                 <div className="loading">Loading</div>

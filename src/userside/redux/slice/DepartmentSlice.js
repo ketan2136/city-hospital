@@ -55,7 +55,7 @@ export const Deletedepartmentdata = createAsyncThunk(
     //     return response.data
     // }
     async (data) => {
-        console.log(data);
+        console.log(data.id);
         try {
 
             console.log(data);
@@ -81,8 +81,10 @@ export const Deletedepartmentdata = createAsyncThunk(
 
 export const Adddepartmentdata = createAsyncThunk(
     'department/add',
-    async (data) => {
+    async (data,id) => {
+        console.log(data);
         console.log(data.file.name);
+        console.log(id);
        
         try {
             const rNo = Math.floor(Math.random() * 1000000000000);
@@ -97,18 +99,22 @@ export const Adddepartmentdata = createAsyncThunk(
                 console.log('Uploaded a blob or file!');
                 await getDownloadURL(snapshot.ref)
                     .then(async (url) => {
-                        console.log(url);
+                     
                         idata = { ...data, file: url, "file_name": rNo + "_" + data.file.name };
+
                         const docRef = await addDoc(collection(db, "department"), idata);
-                        return {
-                            id: docRef.id,
-                            file: url,
-                            ...data,
-                            "file_name": rNo + "_" + data.file.name,
-                        }
+                        console.log(docRef.id);
+
+                        idata = { ...idata, id: docRef.id };
+                        // return {
+                        //     file: url, "file_name": rNo + "_" + data.file.name,
+                        //     id: docRef.id,
+                        // }
                     })
 
             });
+
+            console.log(idata);
 
             return idata;
 
@@ -225,7 +231,7 @@ export const departmentSlice = createSlice({
             .addCase(FetchDepartment.rejected, hisError)
 
             .addCase(Adddepartmentdata.fulfilled, (state, action) => {
-                console.log(state);
+                console.log(action);
                 state.department = state.department.concat(action.payload)
             })
             .addCase(Editdepartmentdata.fulfilled, (state, action) => {
