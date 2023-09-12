@@ -98,12 +98,7 @@ function Appointment(props) {
         dispatch(AptdataDelete(v))
     }
 
-
-
     const { handleBlur, handleChange, handleSubmit, values, errors, touched, setValues, setFieldValue } = formik
-
-
-
 
     return (
         <section id="appointment" className="appointment">
@@ -216,7 +211,9 @@ function Appointment(props) {
 
                             />
 
-                            <img src={typeof values.file === "string" ? values.file : URL.createObjectURL(values.file)} />
+                            
+
+                            <img width={'150px'} height={'150px'} src={typeof values.file === "string" ? values.file : URL.createObjectURL(values.file)} />
 
                             <span className='error'>{errors.file && touched.file ? errors.file : ''}</span>
                         </div>
@@ -247,7 +244,7 @@ function Appointment(props) {
                 {
                     value === 1 &&
                     <>
-                        <h1>hello appoinment</h1>
+                        <h1>Hello Appoinment</h1>
                         <div className='row'>
                             {
                                 apt.apt.map((v, i) => {
@@ -273,8 +270,6 @@ function Appointment(props) {
                                                             <EditIcon />
                                                         </IconButton>
 
-                                                        {/* <a  onClick={() => handleUpdate(v.id)}><EditIcon/></a>
-                                                        <a  onClick={() => handleRemove(v)}><DeleteIcon/></a> */}
                                                     </div>
                                                 </div>
                                             </div>

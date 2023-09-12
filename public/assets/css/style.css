@@ -1302,6 +1302,7 @@ section {
   margin-bottom: 10px;
   text-align: center;
   display: block;
+  color: red;
 }
 
 @media (max-width: 992px) {
@@ -2084,6 +2085,19 @@ section {
   color: #fff;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 .dark .searchIcon {
   color: #fff;
 }
@@ -2408,4 +2422,10 @@ section {
 }
 
 
-
+.dark .authhh {
+  color: red;
+  background: #ca0f0f;
+ width: 10px;
+ height: 10px;
+ border: 2px solid red;
+}

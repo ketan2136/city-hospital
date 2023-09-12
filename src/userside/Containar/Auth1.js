@@ -170,11 +170,11 @@ function Auth1({ btn }) {
                                 {
                                     authtype === 'login' ?
                                         <>
-                                            <span className="login2"><a href='#' onClick={() => setauthtype('forgot')}>forgot password ?</a></span>
-                                            <span className="login1">you have alredy account <a href="#" onClick={() => setauthtype('signup')}>signup</a></span>
+                                            <span className="login2"><a href='#'  onClick={() => setauthtype('forgot')}>forgot password ?</a></span>
+                                            <span className="login1">you have alredy account <a href="#" className='authhh' onClick={() => setauthtype('signup')}>signup</a></span>
                                         </>
                                         :
-                                        <span className="login1">creat new account <a href="#" onClick={() => setauthtype('login')}>login</a></span>
+                                        <span className="login1">creat new account <a href="#" className='authhh' onClick={() => setauthtype('login')}>login</a></span>
                                 }
 
                             </>

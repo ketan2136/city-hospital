@@ -84,7 +84,7 @@ export const AptdataDelete = createAsyncThunk(
         console.log(data);
         try {
 
-            console.log(data);
+            console.log(data.file_name);
 
             const desertRef = ref(storage, 'prescription/' + data.file_name);
             // console.log(data);
@@ -96,12 +96,12 @@ export const AptdataDelete = createAsyncThunk(
 
             // await deleteDoc(doc(db, "appointment", id));
 
-            return data.id;
+
 
         } catch (e) {
             console.error("Error adding document: ", e);
         }
-
+        return data.id;
     }
 )
 
@@ -113,25 +113,18 @@ export const AptdataUpdate = createAsyncThunk(
 
             if (typeof data.file === "string") {
                 console.log('add img');
-
                 const updataRef = doc(db, "appointment", data.id);
-
                 await updateDoc(updataRef, data);
-
                 console.log(data);
-
-
+                // return data;
             } else {
                 console.log('update img');
-
                 const desertRef = ref(storage, 'prescription/' + data.file_name);
                 console.log(desertRef);
                 let iData = { ...data }
                 await deleteObject(desertRef).then(async () => {
                     const rNo = Math.floor(Math.random() * 10);
-
                     const fileRef = ref(storage, 'prescription/' + rNo + "_" + data.file.name);
-        
                     await uploadBytes(fileRef, data.file).then(async (snapshot) => {
                         console.log('Uploaded a blob or file!');
                         await getDownloadURL(snapshot.ref)
@@ -139,19 +132,16 @@ export const AptdataUpdate = createAsyncThunk(
                                 console.log(url);
                                 iData = { ...data, file: url, "file_name": rNo + "_" + data.file.name };
                                 const docRef = await addDoc(collection(db, "appointment"), data.id);
-                                return {
+                                iData = {
                                     id: docRef.id,
                                     file: url,
                                     ...data,
                                     "file_name": rNo + "_" + data.file.name,
                                 }
                             })
-        
-                    });
-                    
-                    
-                    console.log('New Upload File Uploaded');
 
+                    });
+                    console.log('New Upload File Uploaded');
                     // console.log("File deleted successfully");
                     // await deleteDoc(doc(db, "appointment", data.id));
                     // return data.id
@@ -218,7 +208,7 @@ export const appinmentSlice = createSlice({
                 state.isLoading = false;
                 // state.apt = action.payload;
                 let Udata = state.apt.map((v) => {
-                    console.log(v);
+                    console.log(v.id);
                     if (v.id === action.payload.id) {
                         return action.payload;
                     } else {
